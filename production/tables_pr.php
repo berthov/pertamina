@@ -43,6 +43,8 @@ include("controller/doconnect.php");
 
             <div class="clearfix"></div>
 
+             <div class="clearfix"></div>
+
             <br />
 
             <!-- sidebar menu -->
@@ -59,7 +61,6 @@ include("controller/doconnect.php");
         <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
-
             <div class="clearfix"></div>
 
             <div class="row">
@@ -67,7 +68,7 @@ include("controller/doconnect.php");
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Summary ABO ABI <small>Users</small></h2>
+                    <h2>Purchase Request Summary <small>Users</small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -94,30 +95,23 @@ include("controller/doconnect.php");
                             <thead>
                               <tr>
                                 <th>~</th>
-                                <th>Pandan</th>
-                                <th>Pelita</th>
-                                <th>Paluh Tabuhan</th>
-                                <th>Pungut</th>
-                                <th>Pematang</th>
-                                <th>Mangun Jaya</th>
-                                <th>Menggala</th>
-                                <th>Minas</th>
-                                <th>Melahin</th>
-                                <th>Merbau</th>
-                                <th>Mundu</th>
-                                <th>Musi</th>
-                                <th>Meditran</th>
-                                <th>Matindok</th>
-                                <th>Mauhau</th>
-                                <th>Merauke</th>
-                                <th>Kamojang</th>
-                                <th>kasim</th>
-                                <th>Kakap</th>
-                                <th>Parigi</th>
-                                <th>Pattimura</th>
-                                <th>Pasaman</th>
-                                <th>Panjang</th>
-                                <th>TF ll Man</th>
+                                <th>KAPAL</th>
+                                <th>COST CENTER</th>
+                                <th>TECHINCAL SUPERINTENDENT</th>
+                                <th>DESKRIPSI</th>
+                                <th>STATUS PART</th>
+                                <th>COST ELEMENT</th>
+                                <th>COST ELEMENT-DESC</th>
+                                <TH>FRL/MD/MM/2018</TH>
+                                <th>NO PR</th>
+                                <th>DATE PR</th>
+                                <th>NILAI PR</th>
+                                <th>NO PO</th>
+                                <th>DATE PO</th>
+                                <th>NILAI PO</th>
+                                <th>SA/GR NO</th>
+                                <th>SA/GR DATE</th>
+                                <th>NAMA VENDOR/USER</th>
                               </tr>
                             </thead>
 
@@ -125,9 +119,9 @@ include("controller/doconnect.php");
 
                           <?php
 
-                              $sql = "SELECT aa.* 
+                              $sql = "SELECT pr.* 
                                 FROM 
-                                abo_abi aa
+                                purchase_request pr
                                 ";
 
                               $result = $conn->query($sql);
@@ -135,31 +129,24 @@ include("controller/doconnect.php");
                           ?>
 
                               <tr>
-                                <td><?php echo $row["type"]?></td>
-                                <td><?php echo $row["pandan"]?></td>
-                                <td><?php echo $row["pelita"]?></td>
-                                <td><?php echo $row["paluh_tabuhan"]?></td>
-                                <td><?php echo $row["pungut"]?></td>
-                                <td><?php echo $row["pematang"]?></td>
-                                <td><?php echo $row["mangun_jaya"]?></td>
-                                <td><?php echo $row["menggala"]?></td>
-                                <td><?php echo $row["minas"]?></td>
-                                <td><?php echo $row["melahin"]?></td>
-                                <td><?php echo $row["merbau"]?></td>
-                                <td><?php echo $row["mundu"]?></td>
-                                <td><?php echo $row["musi"]?></td>
-                                <td><?php echo $row["meditran"]?></td>
-                                <td><?php echo $row["matindok"]?></td>
-                                <td><?php echo $row["mauhau"]?></td>
-                                <td><?php echo $row["merauke"]?></td>
-                                <td><?php echo $row["kamojang"]?></td>
-                                <td><?php echo $row["kasim"]?></td>
-                                <td><?php echo $row["kakap"]?></td>
-                                <td><?php echo $row["parigi"]?></td>
-                                <td><?php echo $row["pattimura"]?></td>
-                                <td><?php echo $row["pasaman"]?></td>
-                                <td><?php echo $row["panjang"]?></td>
-                                <td><?php echo $row["tf_man"]?></td>
+                                <td>~</td>
+                                <td><?php echo $row["kapal"]?></td>
+                                <td><?php echo $row["cost_center"]?></td>
+                                <td><?php echo $row["technical_superintendent"]?></td>
+                                <td><?php echo $row["deskripsi"]?></td>
+                                <td><?php echo $row["status_part"]?></td>
+                                <td><?php echo $row["cost_element"]?></td>
+                                <td><?php echo $row["cost_element_desc"]?></td>
+                                <td><?php echo $row["FRL_MD_MM_2018"]?></td>
+                                <td><?php echo $row["pr_number"]?></td>
+                                <td><?php echo $row["pr_date"]?></td>
+                                <td><?php echo number_format($row["nilai"])?></td>
+                                <td><?php echo $row["po_number"]?></td>
+                                <td><?php echo $row["po_date"]?></td>
+                                <td><?php echo number_format($row["nilai_po"])?></td>
+                                <td><?php echo $row["sa_number"]?></td>
+                                <td><?php echo $row["sa_date"]?></td>
+                                <td><?php echo $row["vendor"]?></td>
                               </tr>
 
                           <?php
@@ -181,7 +168,7 @@ include("controller/doconnect.php");
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-          
+            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
           </div>
           <div class="clearfix"></div>
         </footer>
