@@ -26,7 +26,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+              <a href="pr_summary.php" class="site_title"><i class="fa fa-paw"></i> <span>Welcome</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -82,7 +82,7 @@
                       <form class="form-horizontal" action="import_csv.php" method="post" enctype="multipart/form-data">
                          <fieldset>
                             <!-- Form Name -->
-                            <legend>MASS ADD CSV ABO ABI </legend>
+                            <legend>MASS ADD CSV PR </legend>
      
                             <!-- File Button -->
                             <div class="form-group">
@@ -97,6 +97,31 @@
                                 <label class="col-md-4 control-label" for="singlebutton">Import data</label>
                                 <div class="col-md-4">
                                     <input type="hidden" name="pr" value="pr">
+                                    <button type="submit" class="btn btn-primary button-loading" data-loading-text="Loading...">Import</button>
+                                </div>
+                            </div>      
+                         </fieldset>
+                     </form>
+
+
+                      <form class="form-horizontal" action="import_csv.php" method="post" enctype="multipart/form-data">
+                         <fieldset>
+                            <!-- Form Name -->
+                            <legend>MASS ADD CSV ABO ABI </legend>
+     
+                            <!-- File Button -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label " for="filebutton">Select File</label>
+                                <div class="col-md-4">
+                                    <input type="file" name="file" id="file" class="input-large">
+                                </div>
+                            </div>
+     
+                            <!-- Button -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="singlebutton">Import data</label>
+                                <div class="col-md-4">
+                                    <input type="hidden" name="abo_abi" value="abo_abi">
                                     <button type="submit" class="btn btn-primary button-loading" data-loading-text="Loading...">Import</button>
                                 </div>
                             </div>      
