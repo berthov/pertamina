@@ -5,13 +5,13 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="pr_summary.php">Dashboard PR</a></li>
+                      <li><a href="index.php">Dashboard PR</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="tables_dynamic.php">Table ABO ABI</a></li>
-                      <li><a href="tables_pr.php">Table PR</a></li>
+                      <li><a href="form.php">Table PR</a></li>
                     </ul>
                   </li>
 <!--                   <li><a><i class="fa fa-bar-chart-o"></i> Data Presentation <span class="fa fa-chevron-down"></span></a>

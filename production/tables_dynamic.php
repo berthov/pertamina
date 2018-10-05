@@ -35,10 +35,10 @@ include("controller/doconnect.php");
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
-        <div class="col-md-3 left_col">
+        <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="pr_summary.php" class="site_title"><i class="fa fa-paw"></i> <span>Welcome</span></a>
+              <a href="index.php" class="site_title"><i class="fa fa-paw"></i> <span>Welcome</span></a>
             </div>
 
             <div class="clearfix"></div>

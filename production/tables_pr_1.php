@@ -1,17 +1,26 @@
 <?php
 include("controller/doconnect.php");
-echo "string";
-echo strtotime(' ');
 ?>
 
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <title>DataTables | Gentelella</title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
     <!-- Datatables -->
     <link href="../vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
     <link href="../vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
@@ -19,64 +28,72 @@ echo strtotime(' ');
     <link href="../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
     <link href="../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 
-    <style type="text/css" class="init">
-    
-    tfoot input {
-        width: 100%;
-        padding: 3px;
-        box-sizing: border-box;
-    }
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.min.css" rel="stylesheet">
+  </head>
 
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col menu_fixed">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="index.php" class="site_title"><i class="fa fa-paw"></i> <span>Welcome</span></a>
+            </div>
 
+            <div class="clearfix"></div>
 
-    </style>
+             <div class="clearfix"></div>
 
-    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+            <br />
 
-    <script type="text/javascript" class="init">
-    
+            <!-- sidebar menu -->
+            <?php include("view/sidebar_menu.php") ?>
+            <!-- /sidebar menu -->
 
-$(document).ready(function() {
-    // Setup - add a text input to each footer cell
-    $('#example-keytable tfoot th').each( function () {
-        var title = $(this).text();
-        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
-    } );
+          </div>
+        </div>
 
-    // DataTable
-    var table = $('#example-keytable').DataTable();
+        <!-- top navigation -->
+        <?php include("view/top_nav.php") ?>
+        <!-- /top navigation -->
 
-    // Apply the search
-    table.columns().every( function () {
-        var that = this;
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="clearfix"></div>
 
-        $( 'input', this.footer() ).on( 'keyup change', function () {
-            if ( that.search() !== this.value ) {
-                that
-                    .search( this.value )
-                    .draw();
-            }
-        } );
-    } );   
+            <div class="row">
 
-    $('#example-keytable tfoot tr').appendTo('#example-keytable thead');
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Purchase Request Summary <small>Users</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div class="card-box table-responsive">
 
-} );
-
-
-    </script>
-</head>
-<body class="wide comments example">
-    <a name="top" id="top"></a>
-    <div class="fw-container">
-        <div class="fw-body">
-            <div class="content">
-                <h1 class="page_title">Individual column searching (text inputs)</h1>
                 <table id="example-keytable" class="table table-striped table-bordered">
                     <thead>
                       <tr>
-                        <th>~</th>
                         <th>KAPAL</th>
                         <th>COST CENTER</th>
                         <th>TECHINCAL SUPERINTENDENT</th>
@@ -112,7 +129,6 @@ $(document).ready(function() {
                           ?>
 
                               <tr>
-                                <td>~</td>
                                 <td><?php echo $row["kapal"]?></td>
                                 <td><?php echo $row["cost_center"]?></td>
                                 <td><?php echo $row["technical_superintendent"]?></td>
@@ -138,7 +154,6 @@ $(document).ready(function() {
                             </tbody>
                     <tfoot>
                         <tr>
-                        <th>~</th>
                         <th>KAPAL</th>
                         <th>COST CENTER</th>
                         <th>TECHINCAL SUPERINTENDENT</th>
@@ -159,10 +174,28 @@ $(document).ready(function() {
                         </tr>
                     </tfoot>
                 </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
     </div>
-</body>
+
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -191,5 +224,38 @@ $(document).ready(function() {
     <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
 
     <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.js"></script>
+    <script src="../build/js/custom.min.js"></script>
+
+    <script type="text/javascript" class="init">
+    
+      $(document).ready(function() {
+          // Setup - add a text input to each footer cell
+          $('#example-keytable tfoot th').each( function () {
+              var title = $(this).text();
+              $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+          } );
+
+          // DataTable
+          var table = $('#example-keytable').DataTable();
+
+          // Apply the search
+          table.columns().every( function () {
+              var that = this;
+
+              $( 'input', this.footer() ).on( 'keyup change', function () {
+                  if ( that.search() !== this.value ) {
+                      that
+                          .search( this.value )
+                          .draw();
+                  }
+              } );
+          } );   
+
+          $('#example-keytable tfoot tr').appendTo('#example-keytable thead');
+
+      } );
+
+  </script>
+
+  </body>
 </html>

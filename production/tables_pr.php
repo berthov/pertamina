@@ -1,5 +1,35 @@
 <?php
 include("controller/doconnect.php");
+
+
+if(isset($_REQUEST['bulan'])){
+  $date = $_REQUEST['bulan'];
+}
+else{
+ $date = ''; 
+}
+
+if(isset($_REQUEST['item'])){
+  $item = $_REQUEST['item'];
+}
+else{
+ $item = ''; 
+}
+
+if(isset($_REQUEST['kapal'])){
+  $kapal = $_REQUEST['kapal'];
+}
+else{
+ $kapal = ''; 
+}
+
+if(isset($_REQUEST['vendor'])){
+  $vendor = $_REQUEST['vendor'];
+}
+else{
+ $vendor = ''; 
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -27,18 +57,28 @@ include("controller/doconnect.php");
     <link href="../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
     <link href="../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
     <link href="../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
-
+    <!-- bootstrap-daterangepicker -->
+    <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- bootstrap-datetimepicker -->
+    <link href="../vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <!-- Ion.RangeSlider -->
+    <link href="../vendors/normalize-css/normalize.css" rel="stylesheet">
+    <link href="../vendors/ion.rangeSlider/css/ion.rangeSlider.css" rel="stylesheet">
+    <link href="../vendors/ion.rangeSlider/css/ion.rangeSlider.skinFlat.css" rel="stylesheet">
+    <!-- Bootstrap Colorpicker -->
+    <link href="../vendors/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
+
   </head>
 
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
-        <div class="col-md-3 left_col">
+        <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="pr_summary.php" class="site_title"><i class="fa fa-paw"></i> <span>Welcome</span></a>
+              <a href="index.php" class="site_title"><i class="fa fa-paw"></i> <span>Welcome</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -64,7 +104,83 @@ include("controller/doconnect.php");
             <div class="clearfix"></div>
 
             <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Filter</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <br />
+                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="tables_pr.php" method="post">
 
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Kapal <span class="required"></span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="first-name" class="form-control col-md-7 col-xs-12" name="kapal" placeholder=<?php echo $kapal; ?>>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Deskripsi Item <span class="required"></span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="first-name" class="form-control col-md-7 col-xs-12" name="item" placeholder=<?php echo $item; ?>>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Vendor <span class="required"></span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="first-name" class="form-control col-md-7 col-xs-12" name="vendor">
+                        </div>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Bulan PR <span class="required"></span>
+                        </label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                          <div class="form-group">
+                              <div class='input-group date' id='myDatepicker2'>
+                                  <input type='text' class="form-control" name="bulan" autocomplete="off">
+                                  <span class="input-group-addon">
+                                     <span class="glyphicon glyphicon-calendar"></span>
+                                  </span>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                          <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                      </div>
+
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
@@ -123,7 +239,11 @@ include("controller/doconnect.php");
                                 FROM 
                                 purchase_request pr
                                 WHERE
-                                pr.kapal not like ''
+                                pr.kapal not like ''                              
+                                and (date_format(pr_date,'%m/%Y') like '".$date."' or ('".$date."' = ''))
+                                and (kapal like '%$kapal%' or ('".$kapal."' = '') ) 
+                                and (deskripsi like '%$item%' or ('".$item."' = '') ) 
+                                and (vendor like '%$vendor%' or ('".$vendor."' = '') ) 
                                 ";
 
                               $result = $conn->query($sql);
@@ -144,7 +264,16 @@ include("controller/doconnect.php");
                                 <td><?php echo $row["pr_date"]?></td>
                                 <td><?php echo number_format($row["nilai"])?></td>
                                 <td><?php echo $row["po_number"]?></td>
-                                <td><?php echo $row["po_date"]?></td>
+                                <td>
+                                <?php if ($row["po_date"] === '0000-00-00') {
+                                  echo "";
+                                } else{
+                                  echo $row["po_date"];
+                                }
+
+                                ?>
+                                  
+                                </td>
                                 <td><?php echo number_format($row["nilai_po"])?></td>
                                 <td><?php echo $row["sa_number"]?></td>
                                 <td><?php echo $row["sa_date"]?></td>
@@ -204,9 +333,28 @@ include("controller/doconnect.php");
     <script src="../vendors/jszip/dist/jszip.min.js"></script>
     <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
-
+    <!-- bootstrap-daterangepicker -->
+    <script src="../vendors/moment/min/moment.min.js"></script>
+    <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- bootstrap-datetimepicker -->    
+    <script src="../vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <!-- Ion.RangeSlider -->
+    <script src="../vendors/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
+    <!-- Bootstrap Colorpicker -->
+    <script src="../vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+    <!-- jquery.inputmask -->
+    <script src="../vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
+
+  <script>
+    
+    $('#myDatepicker2').datetimepicker({
+        viewMode: 'years',
+        format: 'MM/YYYY'
+    });
+    
+</script>
 
   </body>
 </html>

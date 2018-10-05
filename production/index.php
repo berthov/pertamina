@@ -1,3 +1,7 @@
+<?php
+include("controller/doconnect.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentelella Alela! | </title>
+    <title>DataTables | Gentelella</title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -17,13 +21,12 @@
     <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- iCheck -->
     <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
-	
-    <!-- bootstrap-progressbar -->
-    <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
-    <!-- JQVMap -->
-    <link href="../vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
-    <!-- bootstrap-daterangepicker -->
-    <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- Datatables -->
+    <link href="../vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
@@ -32,11 +35,13 @@
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
-        <div class="col-md-3 left_col">
+        <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Welcome</span></a>
+              <a href="index.php" class="site_title"><i class="fa fa-paw"></i> <span>Welcome</span></a>
             </div>
+
+            <div class="clearfix"></div>
 
             <div class="clearfix"></div>
 
@@ -45,6 +50,7 @@
             <!-- sidebar menu -->
             <?php include("view/sidebar_menu.php") ?>
             <!-- /sidebar menu -->
+
           </div>
         </div>
 
@@ -54,113 +60,144 @@
 
         <!-- page content -->
         <div class="right_col" role="main">
-          <!-- top tiles -->
-          <div class="row tile_count">
-            <!-- TOTAL PR ALL -->
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
-              <div class="count">2500</div>
-              <span class="count_bottom"><i class="green">4% </i> From last Week</span>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-clock-o"></i> Average Time</span>
-              <div class="count">123.50</div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Males</span>
-              <div class="count green">2,500</div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Females</span>
-              <div class="count">4,567</div>
-              <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Collections</span>
-              <div class="count">2,315</div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Connections</span>
-              <div class="count">7,325</div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
-            </div>
-          </div>
-          <!-- /top tiles -->
+          <div class="">
 
-          <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              <div class="dashboard_graph">
+            <!-- top tiles -->
+            <div class="row tile_count" align="center">
+              <!-- SUMMARY ABO ABI -->
 
-                <div class="row x_title">
-                  <div class="col-md-6">
-                    <h3>Network Activities <small>Graph title sub-title</small></h3>
-                  </div>
-                </div>
+              <?php
 
-                <div class="col-md-9 col-sm-9 col-xs-12">
-                  <div id="chart_plot_01" class="demo-placeholder"></div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-12 bg-white">
+              $sql = "                            
+                SELECT
+                actual,
+                commitment,
+                plan,
+                available
+                FROM 
+                opex_apex aa
+                where
+                kapal like ''
+                ";
+  
+                $result = $conn->query($sql);
+                while($row = $result->fetch_assoc()) {
+              ?>
+              
+              <div class="col-xl-3 col-md-3 col-sm-3 col-xs-6 tile_stats_count">
+                <span class="count_top"><i class="fa fa-user"></i> Plan 
+                  </span>
+                <div class="count" style="font-size: 25px;"><a href="apex.php"><?php echo "Rp"; echo number_format($row["plan"]);?></a></div>
+                <span class="count_bottom" style="font-size: 20px;"></span>
+              </div>
+
+              <div class="col-xl-3 col-md-3 col-sm-3 col-xs-6 tile_stats_count">
+                <span class="count_top"><i class="fa fa-user"></i> Actual 
+                  </span>
+                <div class="count" style="font-size: 25px;"><a href="apex.php"><?php echo "Rp"; echo number_format($row["actual"]);?></a></div>
+                <span class="count_bottom" style="font-size: 20px;"><i class="green"><?php echo round($row["actual"]/$row["plan"]*100,2);?> </i> %</span>
+              </div>
+
+              <div class="col-xl-3 col-md-3 col-sm-3 col-xs-6 tile_stats_count">
+                <span class="count_top"><i class="fa fa-user"></i> Commitment 
+                  </span>
+                <div class="count" style="font-size: 25px;"><a href="apex.php"><?php echo "Rp"; echo number_format($row["commitment"]);?></a></div>
+                <span class="count_bottom" style="font-size: 20px;"><i class="green"><?php echo round($row["commitment"]/$row["plan"]*100,2);?> </i> % </span>
+              </div>
+
+              <div class="col-xl-3 col-md-3 col-sm-3 col-xs-6 tile_stats_count">
+                <span class="count_top"><i class="fa fa-user"></i> Available 
+                  </span>
+                <div class="count" style="font-size: 25px;"><a href="apex.php"><?php echo "Rp"; echo number_format($row["available"]);?></a></div>
+                <span class="count_bottom" style="font-size: 20px;"><i class="green"><?php echo round($row["available"]/$row["plan"]*100,2);?> </i> %</span>
+              </div>
+
+              <?php
+                }
+              ?>
+            </div>
+            <!-- /top tiles -->
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+
+
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
                   <div class="x_title">
-                    <h2>Top Campaign Performance</h2>
+                    <h2><i class="fa fa-bars"></i> Purchase Request Summary <small></small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
                     <div class="clearfix"></div>
                   </div>
+                  <div class="x_content">
 
-                  <div class="col-md-12 col-sm-12 col-xs-6">
-                    <div>
-                      <p>Facebook Campaign</p>
-                      <div class="">
-                        <div class="progress progress_sm" style="width: 76%;">
-                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="80"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <p>Twitter Campaign</p>
-                      <div class="">
-                        <div class="progress progress_sm" style="width: 76%;">
-                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="60"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-12 col-sm-12 col-xs-6">
-                    <div>
-                      <p>Conventional Media</p>
-                      <div class="">
-                        <div class="progress progress_sm" style="width: 76%;">
-                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="40"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <p>Bill boards</p>
-                      <div class="">
-                        <div class="progress progress_sm" style="width: 76%;">
-                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
 
+                    <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                      <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Plan VS Realisasi</a>
+                        </li>
+                        <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">PR Per Kategori</a>
+                        </li>
+                      </ul>
+                      <div id="myTabContent" class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+                            <?php include("query/summary_pr_perbulan_all.php") ?>
+
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                        
+                          <div class="x_content">
+                            <p><h2><strong>Per Tahun</strong></h2></p>
+                            <canvas id="canvasDoughnut1"></canvas>
+                          </div>
+                          
+                          <div class="clearfix">
+                          </div>   
+
+                          <div class="x_content">
+                            <p><h2><strong>Per Bulan</strong></h2></p>
+                            <canvas id="mybarChart1"></canvas>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
                 </div>
-
-                <div class="clearfix"></div>
               </div>
-            </div>
 
+            </div>
           </div>
-          <br />
         </div>
         <!-- /page content -->
 
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            
+            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
           </div>
           <div class="clearfix"></div>
         </footer>
@@ -178,36 +215,360 @@
     <script src="../vendors/nprogress/nprogress.js"></script>
     <!-- Chart.js -->
     <script src="../vendors/Chart.js/dist/Chart.min.js"></script>
-    <!-- gauge.js -->
-    <script src="../vendors/gauge.js/dist/gauge.min.js"></script>
-    <!-- bootstrap-progressbar -->
-    <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
     <!-- iCheck -->
     <script src="../vendors/iCheck/icheck.min.js"></script>
-    <!-- Skycons -->
-    <script src="../vendors/skycons/skycons.js"></script>
-    <!-- Flot -->
-    <script src="../vendors/Flot/jquery.flot.js"></script>
-    <script src="../vendors/Flot/jquery.flot.pie.js"></script>
-    <script src="../vendors/Flot/jquery.flot.time.js"></script>
-    <script src="../vendors/Flot/jquery.flot.stack.js"></script>
-    <script src="../vendors/Flot/jquery.flot.resize.js"></script>
-    <!-- Flot plugins -->
-    <script src="../vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-    <script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
-    <script src="../vendors/flot.curvedlines/curvedLines.js"></script>
-    <!-- DateJS -->
-    <script src="../vendors/DateJS/build/date.js"></script>
-    <!-- JQVMap -->
-    <script src="../vendors/jqvmap/dist/jquery.vmap.js"></script>
-    <script src="../vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-    <script src="../vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script src="../vendors/moment/min/moment.min.js"></script>
-    <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- Datatables -->
+    <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script src="../vendors/jszip/dist/jszip.min.js"></script>
+    <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
-	
+
+    <script type="text/javascript">
+              
+// BAR
+
+      if ($('#mybarChart1').length ){ 
+        
+        var ctx = document.getElementById("mybarChart1");
+        var mybarChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: [
+
+          // BULAN
+
+          <?php
+
+          $sql="
+          SELECT
+          distinct date_format(pr.pr_date,'%M') bulan
+          FROM 
+          purchase_request pr
+          where 
+          date_format(pr.pr_date,'%Y') = date_format(sysdate(),'%Y')";
+
+          $result=mysqli_query($conn,$sql);   
+              while($row=mysqli_fetch_array($result)){                   
+              echo "\"";echo $row['bulan'] ; echo "\"" ;echo ",";                  
+                }
+
+          ?>
+
+          ],
+          datasets: [{
+          label: 'Jasa',
+          backgroundColor: "#26B99A",
+          data: [
+
+          // DATA JASA
+          <?php
+
+          $sql = "
+            SELECT date_format(pr.pr_date,'%M-%Y') as bulan,
+            (select
+              count(substr(pr_number, 1,3))
+              FROM
+              purchase_request pr1
+              where
+              substr(pr_number, 1,3) like '300%'
+              and date_format(pr.pr_date,'%M-%Y') = date_format(pr1.pr_date,'%M-%Y')
+              and date_format(pr1.pr_date,'%Y') = date_format(sysdate(),'%Y')
+            )count
+            FROM 
+            purchase_request pr
+            where
+            pr.pr_date not like '1970-01-01'
+            and date_format(pr.pr_date,'%Y') = date_format(sysdate(),'%Y')
+            group by date_format(pr.pr_date,'%M-%Y')
+            order by date_format(pr.pr_date,'%m%Y')
+            ";
+
+          $result=mysqli_query($conn,$sql);   
+              while($row=mysqli_fetch_array($result)){                   
+              echo $row['count'];echo ",";                  
+                }
+
+          ?>
+          ]
+          }, {
+          label: 'Material',
+          backgroundColor: "#5626b9",
+          data: [
+
+          // DATA MATERIAL
+          <?php
+
+          $sql = "
+            SELECT date_format(pr.pr_date,'%M-%Y') as bulan,
+            (select
+              count(substr(pr_number, 1,3))
+              FROM
+              purchase_request pr1
+              where
+              substr(pr_number, 1,3) like '200%'
+              and date_format(pr.pr_date,'%M-%Y') = date_format(pr1.pr_date,'%M-%Y')
+              and date_format(pr1.pr_date,'%Y') = date_format(sysdate(),'%Y')
+            )count
+            FROM 
+            purchase_request pr
+            where
+            pr.pr_date not like '1970-01-01'
+            and date_format(pr.pr_date,'%Y') = date_format(sysdate(),'%Y')
+            group by date_format(pr.pr_date,'%M-%Y')
+            order by date_format(pr.pr_date,'%m%Y')
+            ";
+
+          $result=mysqli_query($conn,$sql);   
+              while($row=mysqli_fetch_array($result)){                   
+              echo $row['count'];echo ",";                  
+                }
+
+          ?>
+
+          ]
+          }, {
+          label: 'Panjar',
+          backgroundColor: "#f40e35",
+          data: [
+
+          // DATA PANJAR
+          <?php
+
+          $sql = "
+            SELECT date_format(pr.pr_date,'%M-%Y') as bulan,
+            (select
+              count(substr(pr_number, 1,3))
+              FROM
+              purchase_request pr1
+              where
+              substr(pr_number, 1,3) like '400%'
+              and date_format(pr.pr_date,'%M-%Y') = date_format(pr1.pr_date,'%M-%Y')
+              and date_format(pr1.pr_date,'%Y') = date_format(sysdate(),'%Y')
+            )count
+            FROM 
+            purchase_request pr
+            where
+            pr.pr_date not like '1970-01-01'
+            and date_format(pr.pr_date,'%Y') = date_format(sysdate(),'%Y')
+            group by date_format(pr.pr_date,'%M-%Y')
+            order by date_format(pr.pr_date,'%m%Y')
+            ";
+
+          $result=mysqli_query($conn,$sql);   
+              while($row=mysqli_fetch_array($result)){                   
+              echo $row['count'];echo ",";                  
+                }
+
+          ?>
+
+          ]
+          }, {
+          label: 'Kontrak',
+          backgroundColor: "#bf8383",
+          data: [
+
+          // DATA Kontrak
+          <?php
+
+          $sql = "
+            SELECT date_format(pr.pr_date,'%M-%Y') as bulan,
+            (select
+              count(substr(pr_number, 1,3))
+              FROM
+              purchase_request pr1
+              where
+              substr(pr_number, 1,3) like '900%'
+              and date_format(pr.pr_date,'%M-%Y') = date_format(pr1.pr_date,'%M-%Y')
+              and date_format(pr1.pr_date,'%Y') = date_format(sysdate(),'%Y')
+            )count
+            FROM 
+            purchase_request pr
+            where
+            pr.pr_date not like '1970-01-01'
+            and date_format(pr.pr_date,'%Y') = date_format(sysdate(),'%Y')
+            group by date_format(pr.pr_date,'%M-%Y')
+            order by date_format(pr.pr_date,'%m%Y')
+            ";
+
+          $result=mysqli_query($conn,$sql);   
+              while($row=mysqli_fetch_array($result)){                   
+              echo $row['count'];echo ",";                  
+                }
+
+          ?>
+
+          ]
+          }, {
+          label: 'Docking',
+          backgroundColor: "#41839b",
+          data: [
+
+          // DATA Docking
+          <?php
+
+          $sql = "
+            SELECT date_format(pr.pr_date,'%M-%Y') as bulan,
+            (select
+              count(substr(pr_number, 1,3))
+              FROM
+              purchase_request pr1
+              where
+              substr(pr_number, 1,3) like '550%'
+              and date_format(pr.pr_date,'%M-%Y') = date_format(pr1.pr_date,'%M-%Y')
+              and date_format(pr1.pr_date,'%Y') = date_format(sysdate(),'%Y')
+            )count
+            FROM 
+            purchase_request pr
+            where
+            pr.pr_date not like '1970-01-01'
+            and date_format(pr.pr_date,'%Y') = date_format(sysdate(),'%Y')
+            group by date_format(pr.pr_date,'%M-%Y')
+            order by date_format(pr.pr_date,'%m%Y')
+            ";
+
+          $result=mysqli_query($conn,$sql);   
+              while($row=mysqli_fetch_array($result)){                   
+              echo $row['count'];echo ",";                  
+                }
+
+          ?>
+
+          ]
+          }]
+        },
+
+        options: {
+          scales: {
+          yAxes: [{
+            ticks: {
+            beginAtZero: true
+            }
+          }]
+          }
+        }
+        });
+        
+      } 
+
+// DOUGHNUT
+      if ($('#canvasDoughnut1').length ){ 
+        
+        var ctx = document.getElementById("canvasDoughnut1");
+        var data = {
+        labels: [
+          "Jasa",
+          "Material",
+          "Panjar",
+          "Kontrak",
+          "Docking"
+        ],
+        datasets: [{
+          data: [
+
+            <?php
+
+              $sql = "
+              SELECT date_format(pr.pr_date,'%Y') as tahun,
+              (select
+                count(substr(pr_number, 1,3))
+                FROM
+                purchase_request pr1
+                where
+                substr(pr_number, 1,3) like '300%'
+                and date_format(pr1.pr_date,'%Y') = date_format(sysdate(),'%Y')
+              )jasa,
+              (select
+                count(substr(pr_number, 1,3))
+                FROM
+                purchase_request pr1
+                where
+                substr(pr_number, 1,3) like '200%'
+                and date_format(pr1.pr_date,'%Y') = date_format(sysdate(),'%Y')
+              )material,
+              (select
+                count(substr(pr_number, 1,3))
+                FROM
+                purchase_request pr1
+                where
+                substr(pr_number, 1,3) like '400%'
+                and date_format(pr1.pr_date,'%Y') = date_format(sysdate(),'%Y')
+              )panjar,
+              (select
+                count(substr(pr_number, 1,3))
+                FROM
+                purchase_request pr1
+                where
+                substr(pr_number, 1,3) like '900%'
+                and date_format(pr1.pr_date,'%Y') = date_format(sysdate(),'%Y')
+              )kontrak,
+              (select
+                count(substr(pr_number, 1,3))
+                FROM
+                purchase_request pr1
+                where
+                substr(pr_number, 1,3) like '550%'
+                and date_format(pr1.pr_date,'%Y') = date_format(sysdate(),'%Y')
+              )docking
+              FROM 
+              purchase_request pr
+              where
+              pr.pr_date not like '1970-01-01'
+              and date_format(pr.pr_date,'%Y') = date_format(sysdate(),'%Y')
+              group by date_format(pr.pr_date,'%Y')
+              order by date_format(pr.pr_date,'%Y')
+              ";
+
+              $result = $conn->query($sql);
+              while($row = $result->fetch_assoc()) {
+                echo $row['jasa'];echo ",";
+                echo $row['material'];echo ",";
+                echo $row['panjar'];echo ",";
+                echo $row['kontrak'];echo ",";
+                echo $row['docking'];        
+              }
+            ?>
+
+          ],
+          backgroundColor: [
+          "#26B99A",
+          "#5626b9",
+          "#f40e35",
+          "#bf8383",
+          "#41839b"
+          ],
+          hoverBackgroundColor: [
+          "#18ddb4",
+          "#580cf2",
+          "#ff002b",
+          "#db5757",
+          "#1692bf"
+          ]
+
+        }]
+        };
+
+        var canvasDoughnut = new Chart(ctx, {
+        type: 'doughnut',
+        tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+        data: data
+        });
+       
+      } 
+      
+    </script>
   </body>
 </html>
