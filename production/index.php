@@ -86,13 +86,8 @@ include("controller/doconnect.php");
               <div class="col-xl-3 col-md-3 col-sm-3 col-xs-6 tile_stats_count">
                 <span class="count_top"><i class="fa fa-line-chart"></i> Plan 
                   </span>
-<<<<<<< HEAD
-                <div class="count" style="font-size: 25px;"><a href="apex.php"><?php echo "Rp"; echo number_format($row["plan"]);?></a></div>
-                <span class="count_bottom" style="font-size: 20px;color:#F7F7F7"><?php echo round($row["actual"]/$row["plan"]*100,2);?></span>
-=======
                 <div class="count" style="font-size: 25px;"><a href="apex.php"><?php echo number_format($row["plan"]); echo " IDR";?></a></div>
-                <span class="count_bottom" style="font-size: 20px;"></span>
->>>>>>> 263ed810efec953a1383cfd647496995993c6ca6
+                <span class="count_bottom" style="font-size: 20px;color:#F7F7F7"></span>
               </div>
 
               <div class="col-xl-3 col-md-3 col-sm-3 col-xs-6 tile_stats_count">
@@ -200,11 +195,7 @@ include("controller/doconnect.php");
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-<<<<<<< HEAD
-            
-=======
             Technical Fleet-II <a href="www.pertamina.com"><b>Pertamina</b></a>
->>>>>>> 263ed810efec953a1383cfd647496995993c6ca6
           </div>
           <div class="clearfix"></div>
         </footer>

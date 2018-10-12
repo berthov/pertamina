@@ -305,11 +305,7 @@ else{
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-<<<<<<< HEAD
-            
-=======
             Technical Fleet-II <a href="www.pertamina.com"><b>Pertamina</b></a>
->>>>>>> 263ed810efec953a1383cfd647496995993c6ca6
           </div>
           <div class="clearfix"></div>
         </footer>
