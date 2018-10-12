@@ -372,7 +372,49 @@ if (isset($_POST["abo_abi"])) {
 		} while ( $i <= 49);
 	}
 
-	header("Location:index.php");
+	//DELETE TABLE 
+	$sql ="DELETE FROM detail_kapal";
+	$result = mysqli_query($conn, $sql);
+
+	for ($a=6; $a <=28 ; $a++) { 
+	
+		if ($excel->setActiveSheetIndex($a)->getTitle() === 'P_Tabuhan') {
+			$kapal = 'Paluh Tabuhan';
+		}
+		elseif ($excel->setActiveSheetIndex($a)->getTitle() === 'MangunJaya') {
+			$kapal = 'Mangun Jaya';
+		}
+		else{
+			$kapal =$excel->setActiveSheetIndex($a)->getTitle();
+		}
+
+		if ($excel->setActiveSheetIndex($a)) {
+
+		$i = 2;
+
+		while ($excel->getActiveSheet()->getCell('A'.$i)->getValue() != "") {
+			
+				$cost_element 		=substr($excel->getActiveSheet()->getCell('A'.$i)->getValue(),4,30);
+				$actual 			=$excel->getActiveSheet()->getCell('B'.$i)->getValue();
+				$commitment 		=$excel->getActiveSheet()->getCell('C'.$i)->getValue();
+				$alloted 			=$excel->getActiveSheet()->getCell('D'.$i)->getValue();
+				$plan 				=$excel->getActiveSheet()->getCell('E'.$i)->getValue();
+				$available 			=$excel->getActiveSheet()->getCell('F'.$i)->getValue();
+				
+			 	$sql = "INSERT into detail_kapal (kapal,cost_element,actual,plan,commitment,available,alloted) 
+			    values ('".$kapal."','".$cost_element."','".$actual."','".$plan."','".$commitment."','".$available."','".$alloted."')";
+
+			    $result = mysqli_query($conn, $sql);
+
+			$i++;
+
+			}
+
+		}
+
+	}
+
+	header("Location:index.php");	
 
 }
 
@@ -407,6 +449,8 @@ if (isset($_POST["employee"])) {
 	header("Location:index.php");
 
 }
+
+
 
  ?>
 

@@ -1,13 +1,14 @@
 <?php
 include("controller/doconnect.php");
 
-
-if(isset($_REQUEST['employee']) && $_REQUEST['employee'] !='all' ){
+if(isset($_REQUEST['employee'])){
   $p_employee = $_REQUEST['employee'];
 }
 else{
  $p_employee = ''; 
 }
+
+$kapal = $_REQUEST['kapal'];
 
 ?>
 
@@ -70,7 +71,7 @@ else{
         <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
-            <form class="form-horizontal" action="apex.php" method="post">
+            <form class="form-horizontal" action="detail_kapal.php" method="post">
               <!-- top tiles -->
               <div class="row tile_count" align="center">
                 <!-- SUMMARY ABO ABI -->
@@ -90,7 +91,7 @@ else{
                   where
                   aa.kapal not like ''
                   and aa.kapal = e.kapal
-                  and (e.employee = '".$p_employee."' or  ('".$p_employee."' = '' ) ) 
+                 and (e.employee = '".$p_employee."' or  ('".$p_employee."' = '' ) ) 
                   ";
     
                   $result = $conn->query($sql);
@@ -145,7 +146,7 @@ else{
                 <div class="col-md-12 col-sm-12 col-xs-12">
                   <div class="x_panel">
                     <div class="x_title">
-                      <h2><i class="fa fa-bars"></i> ABO ABI Summary <small></small></h2>
+                      <h2>Detail <?php echo $kapal; ?></h2>
                       <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
@@ -166,7 +167,7 @@ else{
                     <div class="x_content">
                       <div class="col-lg-9 col-md-9 hidden-xs">
                       </div>
-                      <div class="col-lg-3 col-md-3 col-xs-12 pull-right">
+            <!--           <div class="col-lg-3 col-md-3 col-xs-12 pull-right">
                         
                         <select name="employee" id="category" class="form-control col-lg-3 col-md-3 col-xs-4 category" style="margin-top:10px">
                           <option value="" disabled selected >Select Technical Superintendent</option>
@@ -185,19 +186,13 @@ else{
                           ?>
 
                         </select>
-                      </div>
+                      </div> -->
                       <div class="x_content" style="padding-top: 20px;">
                         <table class="table table-bordered">
                           <tbody>
                             <tr>
-                              <th rowspan="2" style="text-align: center;vertical-align: middle;">No</th>
-                              <th rowspan="2" style="text-align: center;vertical-align: middle;">Nama Kapal</th>
-                              <th rowspan="2" style="text-align: center;vertical-align: middle;">Cur</th>
-                              <th colspan="4" style="text-align: center;">ANGGARAN OPERASIONAL KAPAL TF II 2018</th>
-                              <th rowspan="2" style="text-align: center;vertical-align: middle;">Sisa</th>
-                            </tr>
-
-                            <tr>
+                              <th style="text-align: center;vertical-align: middle;">Cost Element</th>
+                              <!-- <th style="text-align: center;">Cost Center</th> -->
                               <th style="text-align: center;">Plan</th>
                               <th style="text-align: center;">Actual</th>
                               <th style="text-align: center;">Commitment</th>
@@ -206,39 +201,38 @@ else{
 
                             <?php
 
-                              $sql = "SELECT 
-                              @i:=@i+1 as row,aa.* 
-                              FROM opex_apex aa,
+                              $sql = "SELECT oa.cost_center,aa.* 
+                              FROM detail_kapal aa,
                               employee e,
-                              (SELECT @i:=0) as foo
+                              opex_apex oa
                               where
                               aa.kapal not like ''
                               and aa.kapal = e.kapal
+                              and aa.kapal = oa.kapal
                               and (e.employee = '".$p_employee."' or  ('".$p_employee."' = '' ) ) 
+                              and e.kapal = '".$kapal."'
+                              and 
+                              (aa.cost_element like '%6001011110%' or 
+                              aa.cost_element like '%6001013120%' or
+                              aa.cost_element like '%6001013130%' or
+                              aa.cost_element like '%6001013210%' or
+                              aa.cost_element like '%6001014170%' or
+                              aa.cost_element like '%6001020100%' or
+                              aa.cost_element like '%6001022190%' )
+                              order by cost_element
                               ";
                               $result = $conn->query($sql);
                               while($row = $result->fetch_assoc()) {
 
                               ?>
                               <tr align="right">
-                                <th rowspan="2" style="text-align: center;vertical-align: middle;"><?php echo $row["row"] ?></th>
-                                <th scope="row"><a href="detail_kapal.php?kapal=<?php echo $row["kapal"]?>&employee=<?php echo $p_employee;?>"><?php echo $row["kapal"] ?></a></th>
-                                <td align="center"><?php echo $row["curr"] ?></td>
-                                <td><?php echo number_format($row["plan"]) ?></td>
-                                <td><?php echo number_format($row["actual"]) ?></td>
-                                <td><?php echo number_format($row["commitment"]) ?></td>
-                                <td><?php echo number_format($row["available"]) ?></td>
-                                <td rowspan="2" style="text-align: center;vertical-align: middle;"><?php echo round($row["available"]/$row["plan"] * 100,2) ?>%</td>
+                                <th scope="row"><?php echo $row["cost_element"] ?></th>
+                                <!-- <th scope="row"><?php echo $row["cost_center"] ?></th> -->
+                                <th scope="row"><?php echo number_format($row["plan"]) ?></th>
+                                <th scope="row"><?php echo number_format($row["actual"]) ?></th>
+                                <th scope="row"><?php echo number_format($row["commitment"]) ?></th>
+                                <th scope="row"><?php echo number_format($row["available"]) ?></th>
                               </tr>
-                              <tr align="right">
-                                <th scope="row"><?php echo $row["cost_center"] ?></th>
-                                <td align="center"><?php echo $row["curr_usd"] ?></td>
-                                <td><?php echo number_format($row["plan_usd"]) ?></td>
-                                <td><?php echo number_format($row["actual_usd"]) ?></td>
-                                <td><?php echo number_format($row["commitment_usd"]) ?></td>
-                                <td><?php echo number_format($row["available_usd"]) ?></td>
-                              </tr>
-                            
                             <?php
                             
                             }
@@ -260,7 +254,6 @@ else{
 
         <!-- /page content -->
 
-
         <!-- footer content -->
         <footer>
           <div class="pull-right">
@@ -269,6 +262,7 @@ else{
           <div class="clearfix"></div>
         </footer>
         <!-- /footer content -->
+      </div>
     </div>
 
     <!-- jQuery -->

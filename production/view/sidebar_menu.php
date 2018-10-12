@@ -10,7 +10,7 @@
                   </li>
                   <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="tables_dynamic.php">Table ABO ABI</a></li>
+                      <!-- <li><a href="tables_dynamic.php">Table ABO ABI</a></li> -->
                       <li><a href="form.php">Table PR</a></li>
                     </ul>
                   </li>

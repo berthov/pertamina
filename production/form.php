@@ -125,7 +125,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            
           </div>
           <div class="clearfix"></div>
         </footer>
@@ -165,7 +165,7 @@
     
     $('#myDatepicker2').datetimepicker({
         viewMode: 'years',
-                format: 'MM/YYYY'
+        format: 'MM/YYYY'
     });
     
     $('#myDatepicker3').datetimepicker({

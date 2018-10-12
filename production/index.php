@@ -88,7 +88,7 @@ include("controller/doconnect.php");
                 <span class="count_top"><i class="fa fa-user"></i> Plan 
                   </span>
                 <div class="count" style="font-size: 25px;"><a href="apex.php"><?php echo "Rp"; echo number_format($row["plan"]);?></a></div>
-                <span class="count_bottom" style="font-size: 20px;"></span>
+                <span class="count_bottom" style="font-size: 20px;color:#F7F7F7"><?php echo round($row["actual"]/$row["plan"]*100,2);?></span>
               </div>
 
               <div class="col-xl-3 col-md-3 col-sm-3 col-xs-6 tile_stats_count">
@@ -197,7 +197,7 @@ include("controller/doconnect.php");
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            
           </div>
           <div class="clearfix"></div>
         </footer>
