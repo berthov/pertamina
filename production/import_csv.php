@@ -2,11 +2,7 @@
 include("controller/doconnect.php");
 require_once 'Classes/PHPExcel.php';
 
-
-
 if(isset($_POST["pr"])){
-
-
 	$excel = PHPExcel_IOFactory::load($_FILES['file']['tmp_name']);
 	// $excel = PHPExcel_IOFactory::load('test.xlsx');
 
@@ -14,14 +10,10 @@ if(isset($_POST["pr"])){
 		$sql ="DELETE FROM purchase_request";
 		$result = mysqli_query($conn, $sql);
 
-
 	// SHEET 2
-
 		if ($excel->setActiveSheetIndex(1)) {
-
-
 			$i = 11;
-
+			
 			while ($excel->getActiveSheet()->getCell('A'.$i)->getValue() != "") {
 				
 				$kapal 						=$excel->getActiveSheet()->getCell('B'.$i)->getValue();
