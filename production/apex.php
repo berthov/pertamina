@@ -47,14 +47,14 @@ else{
         <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.php" class="site_title"><i class="fa fa-paw"></i> <span>Welcome</span></a>
+              <a href="index.php" class="site_title"><i class="fa fa-ship"></i> <span>Technical Fleet-II</span></a>
             </div>
 
             <div class="clearfix"></div>
 
              <div class="clearfix"></div>
 
-            <br />
+            <br> <br> <br>
 
             <!-- sidebar menu -->
             <?php include("view/sidebar_menu.php") ?>
@@ -98,36 +98,36 @@ else{
                 ?>
                 
                 <div class="col-xl-3 col-md-3 col-sm-3 col-xs-6 tile_stats_count">
-                  <span class="count_top"><i class="fa fa-user"></i> Plan 
+                  <span class="count_top"><i class="fa fa-line-chart"></i> Plan 
                     </span>
-                  <div class="count" style="font-size: 25px;"><?php echo "Rp"; echo number_format($row["plan"]);?></div>
+                  <div class="count" style="font-size: 25px;"><?php echo number_format($row["plan"]); echo " IDR"?></div>
                   <span class="count_bottom" style="font-size: 20px; color: none;"><i style="font-color:white;">
                     <?php if ($p_employee != '') {
                       echo $p_employee;
                     } else {
-                      echo "All";
+                      echo "Technical Fleet - II";
                     }
                     ?> </i> </span>
                 </div>
 
                 <div class="col-xl-3 col-md-3 col-sm-3 col-xs-6 tile_stats_count">
-                  <span class="count_top"><i class="fa fa-user"></i> Actual 
+                  <span class="count_top"><i class="fa fa-line-chart"></i> Actual 
                     </span>
-                  <div class="count" style="font-size: 25px;"><?php echo "Rp"; echo number_format($row["actual"]);?></div>
+                  <div class="count" style="font-size: 25px;"><?php echo number_format($row["actual"]); echo " IDR"?></div>
                   <span class="count_bottom" style="font-size: 20px;"><i class="green"><?php echo round($row["actual"]/$row["plan"]*100,2);?> </i> %</span>
                 </div>
 
                 <div class="col-xl-3 col-md-3 col-sm-3 col-xs-6 tile_stats_count">
-                  <span class="count_top"><i class="fa fa-user"></i> Commitment 
+                  <span class="count_top"><i class="fa fa-line-chart"></i> Commitment 
                     </span>
-                  <div class="count" style="font-size: 25px;"><?php echo "Rp"; echo number_format($row["commitment"]);?></div>
+                  <div class="count" style="font-size: 25px;"><?php echo number_format($row["commitment"]); echo " IDR"?></div>
                   <span class="count_bottom" style="font-size: 20px;"><i class="green"><?php echo round($row["commitment"]/$row["plan"]*100,2);?> </i> % </span>
                 </div>
 
                 <div class="col-xl-3 col-md-3 col-sm-3 col-xs-6 tile_stats_count">
-                  <span class="count_top"><i class="fa fa-user"></i> Available 
+                  <span class="count_top"><i class="fa fa-line-chart"></i> Available 
                     </span>
-                  <div class="count" style="font-size: 25px;"><?php echo "Rp"; echo number_format($row["available"]);?></div>
+                  <div class="count" style="font-size: 25px;"><?php echo number_format($row["available"]); echo " IDR"?></div>
                   <span class="count_bottom" style="font-size: 20px;"><i class="green"><?php echo round($row["available"]/$row["plan"]*100,2);?> </i> %</span>
                 </div>
 
@@ -145,11 +145,11 @@ else{
                 <div class="col-md-12 col-sm-12 col-xs-12">
                   <div class="x_panel">
                     <div class="x_title">
-                      <h2><i class="fa fa-bars"></i> ABO ABI Summary <small></small></h2>
+                      <h2><i class="fa fa-list"></i> Summary Anggaran <small></small></h2>
                       <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
-                        <li class="dropdown">
+                        <!-- <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                           <ul class="dropdown-menu" role="menu">
                             <li><a href="#">Settings 1</a>
@@ -159,18 +159,19 @@ else{
                           </ul>
                         </li>
                         <li><a class="close-link"><i class="fa fa-close"></i></a>
-                        </li>
+                        </li> -->
                       </ul>
                       <div class="clearfix"></div>
                     </div>
-                    <div class="x_content">
+                    
+					<div class="x_content">
                       <div class="col-lg-9 col-md-9 hidden-xs">
                       </div>
                       <div class="col-lg-3 col-md-3 col-xs-12 pull-right">
                         
                         <select name="employee" id="category" class="form-control col-lg-3 col-md-3 col-xs-4 category" style="margin-top:10px">
                           <option value="" disabled selected >Select Technical Superintendent</option>
-                          <option value="all">All Technical Superintendent</option>
+                          <option value="all">Technical Fleet II</option>
                           
                            <?php
                             $sql = "SELECT distinct employee 
@@ -192,8 +193,8 @@ else{
                             <tr>
                               <th rowspan="2" style="text-align: center;vertical-align: middle;">No</th>
                               <th rowspan="2" style="text-align: center;vertical-align: middle;">Nama Kapal</th>
-                              <th rowspan="2" style="text-align: center;vertical-align: middle;">Cur</th>
-                              <th colspan="4" style="text-align: center;">ANGGARAN OPERASIONAL KAPAL TF II 2018</th>
+                              <th rowspan="2" style="text-align: center;vertical-align: middle;">Currency</th>
+                              <th colspan="4" style="text-align: center;">ANGGARAN OPERASIONAL KAPAL Technical Fleet - II 2018</th>
                               <th rowspan="2" style="text-align: center;vertical-align: middle;">Sisa</th>
                             </tr>
 
@@ -264,7 +265,7 @@ else{
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            
+            Technical Fleet-II <a href="www.pertamina.com"><b>Pertamina</b></a>
           </div>
           <div class="clearfix"></div>
         </footer>
