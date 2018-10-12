@@ -11,7 +11,7 @@ include("controller/doconnect.php");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>DataTables | Gentelella</title>
+    <title>Technical Fleet-II</title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -38,14 +38,13 @@ include("controller/doconnect.php");
         <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.php" class="site_title"><i class="fa fa-paw"></i> <span>Welcome</span></a>
+              <a href="index.php" class="site_title"><i class="fa fa-ship"></i> <span>Technical Fleet-II</span></a>
             </div>
 
             <div class="clearfix"></div>
-
             <div class="clearfix"></div>
 
-            <br />
+            <br> <br> <br>
 
             <!-- sidebar menu -->
             <?php include("view/sidebar_menu.php") ?>
@@ -85,30 +84,30 @@ include("controller/doconnect.php");
               ?>
               
               <div class="col-xl-3 col-md-3 col-sm-3 col-xs-6 tile_stats_count">
-                <span class="count_top"><i class="fa fa-user"></i> Plan 
+                <span class="count_top"><i class="fa fa-line-chart"></i> Plan 
                   </span>
-                <div class="count" style="font-size: 25px;"><a href="apex.php"><?php echo "Rp"; echo number_format($row["plan"]);?></a></div>
+                <div class="count" style="font-size: 25px;"><a href="apex.php"><?php echo number_format($row["plan"]); echo " IDR";?></a></div>
                 <span class="count_bottom" style="font-size: 20px;"></span>
               </div>
 
               <div class="col-xl-3 col-md-3 col-sm-3 col-xs-6 tile_stats_count">
-                <span class="count_top"><i class="fa fa-user"></i> Actual 
+                <span class="count_top"><i class="fa fa-line-chart"></i> Actual 
                   </span>
-                <div class="count" style="font-size: 25px;"><a href="apex.php"><?php echo "Rp"; echo number_format($row["actual"]);?></a></div>
+                <div class="count" style="font-size: 25px;"><a href="apex.php"><?php echo number_format($row["actual"]); echo " IDR";?></a></div>
                 <span class="count_bottom" style="font-size: 20px;"><i class="green"><?php echo round($row["actual"]/$row["plan"]*100,2);?> </i> %</span>
               </div>
 
               <div class="col-xl-3 col-md-3 col-sm-3 col-xs-6 tile_stats_count">
-                <span class="count_top"><i class="fa fa-user"></i> Commitment 
+                <span class="count_top"><i class="fa fa-line-chart"></i> Commitment 
                   </span>
-                <div class="count" style="font-size: 25px;"><a href="apex.php"><?php echo "Rp"; echo number_format($row["commitment"]);?></a></div>
+                <div class="count" style="font-size: 25px;"><a href="apex.php"><?php echo number_format($row["commitment"]); echo " IDR";?></a></div>
                 <span class="count_bottom" style="font-size: 20px;"><i class="green"><?php echo round($row["commitment"]/$row["plan"]*100,2);?> </i> % </span>
               </div>
 
               <div class="col-xl-3 col-md-3 col-sm-3 col-xs-6 tile_stats_count">
-                <span class="count_top"><i class="fa fa-user"></i> Available 
+                <span class="count_top"><i class="fa fa-line-chart"></i> Available 
                   </span>
-                <div class="count" style="font-size: 25px;"><a href="apex.php"><?php echo "Rp"; echo number_format($row["available"]);?></a></div>
+                <div class="count" style="font-size: 25px;"><a href="apex.php"><?php echo number_format($row["available"]); echo " IDR";?></a></div>
                 <span class="count_bottom" style="font-size: 20px;"><i class="green"><?php echo round($row["available"]/$row["plan"]*100,2);?> </i> %</span>
               </div>
 
@@ -126,11 +125,11 @@ include("controller/doconnect.php");
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2><i class="fa fa-bars"></i> Purchase Request Summary <small></small></h2>
+                    <h2><i class="fa fa-list"></i> PR Summary <small></small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
-                      <li class="dropdown">
+                      <!-- <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                         <ul class="dropdown-menu" role="menu">
                           <li><a href="#">Settings 1</a>
@@ -140,28 +139,27 @@ include("controller/doconnect.php");
                         </ul>
                       </li>
                       <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
+                      </li> -->
                     </ul>
                     <div class="clearfix"></div>
                   </div>
+				  
                   <div class="x_content">
-
-
                     <div class="" role="tabpanel" data-example-id="togglable-tabs">
                       <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Plan VS Realisasi</a>
+                        <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true"> <i class="fa fa-level-down"></i> PR VS PO</a>
                         </li>
-                        <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">PR Per Kategori</a>
+                        <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false"> <i class="fa fa-credit-card-alt"></i> PR Jenis Pengadaan</a>
                         </li>
                       </ul>
                       <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                          <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                           tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
                           quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
                           consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
                           cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> -->
 
                             <?php include("query/summary_pr_perbulan_all.php") ?>
 
@@ -197,7 +195,7 @@ include("controller/doconnect.php");
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            Technical Fleet-II <a href="www.pertamina.com"><b>Pertamina</b></a>
           </div>
           <div class="clearfix"></div>
         </footer>

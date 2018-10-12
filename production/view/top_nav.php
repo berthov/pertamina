@@ -5,7 +5,7 @@
                 <a id="menu_toggle"><i class="fa fa-bars"></i></a>
               </div>
 
-              <ul class="nav navbar-nav navbar-right">
+              <!-- <ul class="nav navbar-nav navbar-right">
                 </li>
 
                 <li role="presentation" class="dropdown">
@@ -13,7 +13,7 @@
                     <i class="fa fa-coffee"></i>
                   </a>
                 </li>
-              </ul>
+              </ul> -->
             </nav>
           </div>
         </div>

@@ -41,7 +41,7 @@ else{
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>DataTables | Gentelella</title>
+    <title>Technical Fleet-II</title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -78,7 +78,7 @@ else{
         <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.php" class="site_title"><i class="fa fa-paw"></i> <span>Welcome</span></a>
+              <a href="index.php" class="site_title"><i class="fa fa-ship"></i> <span>Technical Fleet-II</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -107,11 +107,12 @@ else{
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Filter</h2>
+                    <h1>Filter</h1>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
-                      <li class="dropdown">
+					  
+                      <!-- <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                         <ul class="dropdown-menu" role="menu">
                           <li><a href="#">Settings 1</a>
@@ -120,17 +121,20 @@ else{
                           </li>
                         </ul>
                       </li>
+					  
                       <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
+                      </li> -->
                     </ul>
+					
                     <div class="clearfix"></div>
                   </div>
+				  
                   <div class="x_content">
                     <br />
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="tables_pr.php" method="post">
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Kapal <span class="required"></span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nama Kapal<span class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="text" id="first-name" class="form-control col-md-7 col-xs-12" name="kapal" placeholder=<?php echo $kapal; ?>>
@@ -138,7 +142,7 @@ else{
                       </div>
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Deskripsi Item <span class="required"></span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Uraian<span class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="text" id="first-name" class="form-control col-md-7 col-xs-12" name="item" placeholder=<?php echo $item; ?>>
@@ -146,7 +150,7 @@ else{
                       </div>
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Vendor <span class="required"></span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nama Vendor/User<span class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="text" id="first-name" class="form-control col-md-7 col-xs-12" name="vendor">
@@ -154,7 +158,7 @@ else{
                       </div>
                       
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Bulan PR <span class="required"></span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Bulan PR<span class="required"></span>
                         </label>
                         <div class="col-md-3 col-sm-3 col-xs-12">
                           <div class="form-group">
@@ -184,11 +188,11 @@ else{
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Purchase Request Summary <small>Users</small></h2>
+                    <h2><b>Purchase Request (PR) Summary</b></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
-                      <li class="dropdown">
+                      <!-- <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                         <ul class="dropdown-menu" role="menu">
                           <li><a href="#">Settings 1</a>
@@ -198,10 +202,11 @@ else{
                         </ul>
                       </li>
                       <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
+                      </li> -->
                     </ul>
                     <div class="clearfix"></div>
                   </div>
+				  
                   <div class="x_content">
                     <div class="row">
                       <div class="col-sm-12">
@@ -211,22 +216,22 @@ else{
                             <thead>
                               <tr>
                                 <th>~</th>
-                                <th>KAPAL</th>
+                                <th>NAMA KAPAL</th>
                                 <th>COST CENTER</th>
                                 <th>TECHINCAL SUPERINTENDENT</th>
-                                <th>DESKRIPSI</th>
+                                <th>URAIAN</th>
                                 <th>STATUS PART</th>
                                 <th>COST ELEMENT</th>
-                                <th>COST ELEMENT-DESC</th>
-                                <TH>FRL/MD/MM/2018</TH>
+                                <th>COST ELEMENT - URAIAN</th>
+                                <TH>FRL/MD/MM/MIV/2018</TH>
                                 <th>NO PR</th>
-                                <th>DATE PR</th>
+                                <th>TANGGAL PR</th>
                                 <th>NILAI PR</th>
                                 <th>NO PO</th>
-                                <th>DATE PO</th>
+                                <th>TANGGAL PO</th>
                                 <th>NILAI PO</th>
-                                <th>SA/GR NO</th>
-                                <th>SA/GR DATE</th>
+                                <th>NO SA/GR</th>
+                                <th>TANGGAL SA/GR</th>
                                 <th>NAMA VENDOR/USER</th>
                               </tr>
                             </thead>
@@ -265,6 +270,7 @@ else{
                                 <td><?php echo number_format($row["nilai"])?></td>
                                 <td><?php echo $row["po_number"]?></td>
                                 <td>
+								
                                 <?php if ($row["po_date"] === '0000-00-00') {
                                   echo "";
                                 } else{
@@ -299,7 +305,7 @@ else{
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            Technical Fleet-II <a href="www.pertamina.com"><b>Pertamina</b></a>
           </div>
           <div class="clearfix"></div>
         </footer>

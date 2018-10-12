@@ -5,11 +5,11 @@
                               <tr>
                                 <th>Bulan</th>
                                 <!-- <th>Jumlah PR</th> -->
-                                <th>Jumlah Nominal PR</th>
+                                <th>Total Nilai PR</th>
                                 <!-- <th>Jumlah PO</th> -->
-                                <th>Jumlah Nominal PO yang Terealisasi</th>
-                                <th>Selisih</th>
-                                <th>%</th>
+                                <th>Total Nilai PO</th>
+                                <th>Pengurangan</th>
+                                <th>Efficiency</th>
                               </tr>
                             </thead>
 
@@ -43,11 +43,11 @@
                               <tr>
                                 <td><?php echo $row["bulan"];?></td>
                                 <!-- <td><?php echo $row["total"];?></td> -->
-                                <td><?php echo "Rp"; echo number_format($row["nilai_pr"]);?></td>
+                                <td><?php echo number_format($row["nilai_pr"]); echo " IDR";?></td>
                                 <!-- <td><?php echo $row["count_po"];?></td> -->
-                                <td><?php echo "Rp"; echo number_format($row["nilai_po"]);?></td>
-                                <td style="color: red"><?php echo "Rp"; echo number_format($row["nilai_pr"] - $row["nilai_po"]);?></td>
-                                <td style="color: red"><?php echo round(($row["nilai_pr"] - $row["nilai_po"])/$row["nilai_pr"] * 100,2);?></td>
+                                <td><?php echo number_format($row["nilai_po"]); echo " IDR" ?></td>
+                                <td style="color: red"><?php echo number_format($row["nilai_pr"] - $row["nilai_po"]); echo " IDR"?></td>
+                                <td style="color: red"><?php echo round(($row["nilai_pr"] - $row["nilai_po"])/$row["nilai_pr"] * 100,2); echo " %"?></td>
                               </tr>
 
                           <?php

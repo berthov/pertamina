@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	  
-    <title>Gentelella Alela! | </title>
+    <title>Technical Fleet-II</title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -38,12 +38,12 @@
         <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.php" class="site_title"><i class="fa fa-paw"></i> <span>Welcome</span></a>
+              <a href="index.php" class="site_title"><i class="fa fa-ship"></i> <span>Technical Fleet-II</span></a>
             </div>
 
             <div class="clearfix"></div>
 
-            <br />
+            <br> <br> <br>
 
             <!-- sidebar menu -->
             <?php include("view/sidebar_menu.php") ?>
@@ -61,19 +61,20 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Form Elements</h3>
+                <h3><b>Search PR</b></h3>
               </div>
-
             </div>
+			
             <div class="clearfix"></div>
-            <div class="row">
+            
+			<div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
-                      <li class="dropdown">
+                      <!-- <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                         <ul class="dropdown-menu" role="menu">
                           <li><a href="#">Settings 1</a>
@@ -83,16 +84,17 @@
                         </ul>
                       </li>
                       <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
+                      </li> -->
                     </ul>
                     <div class="clearfix"></div>
                   </div>
-                  <div class="x_content">
+                  
+				  <div class="x_content">
                     <br />
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="tables_pr.php" method="post">
 
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Kapal <span class="required"></span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nama Kapal<span class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="text" id="first-name" class="form-control col-md-7 col-xs-12" name="kapal">
@@ -100,7 +102,7 @@
                       </div>
                       
                       <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Deskripsi Item <span class="required"></span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Uraian<span class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="text" id="first-name" class="form-control col-md-7 col-xs-12" name="item">
@@ -125,7 +127,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            Technical Fleet-II <a href="www.pertamina.com"><b>Pertamina</b></a> 
           </div>
           <div class="clearfix"></div>
         </footer>
