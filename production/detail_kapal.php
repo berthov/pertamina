@@ -192,7 +192,7 @@ $kapal = $_REQUEST['kapal'];
                           <tbody>
                             <tr>
                               <th style="text-align: center;vertical-align: middle;">Cost Element</th>
-                              <!-- <th style="text-align: center;">Cost Center</th> -->
+                              <th style="text-align: center;">Currency</th>
                               <th style="text-align: center;">Plan</th>
                               <th style="text-align: center;">Actual</th>
                               <th style="text-align: center;">Commitment</th>
@@ -226,13 +226,22 @@ $kapal = $_REQUEST['kapal'];
 
                               ?>
                               <tr align="right">
-                                <th scope="row"><?php echo $row["cost_element"] ?></th>
-                                <!-- <th scope="row"><?php echo $row["cost_center"] ?></th> -->
-                                <th scope="row"><?php echo number_format($row["plan"]) ?></th>
-                                <th scope="row"><?php echo number_format($row["actual"]) ?></th>
-                                <th scope="row"><?php echo number_format($row["commitment"]) ?></th>
-                                <th scope="row"><?php echo number_format($row["available"]) ?></th>
+                                <th scope="row" rowspan="2" style="text-align: center;vertical-align: middle;"><?php echo $row["cost_element"] ?></th>
+                                <td style="text-align: center;vertical-align: middle;">IDR</td>
+                                <td><?php echo number_format($row["plan"]*$row["kurs"]) ?></td>
+                                <td><?php echo number_format($row["actual"]*$row["kurs"]) ?></td>
+                                <td><?php echo number_format($row["commitment"]*$row["kurs"]) ?></td>
+                                <td><?php echo number_format($row["available"]*$row["kurs"]) ?></td>
                               </tr>
+
+                              <tr align="right">
+                                <td style="text-align: center;vertical-align: middle;">USD</td>
+                                <td><?php echo number_format($row["plan"]) ?></td>
+                                <td><?php echo number_format($row["actual"]) ?></td>
+                                <td><?php echo number_format($row["commitment"]) ?></td>
+                                <td><?php echo number_format($row["available"]) ?></td>
+                              </tr>
+
                             <?php
                             
                             }

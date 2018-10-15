@@ -364,6 +364,7 @@ if (isset($_POST["abo_abi"])) {
 		} while ( $i <= 49);
 	}
 
+	//DETAIL KAPAL
 	//DELETE TABLE 
 	$sql ="DELETE FROM detail_kapal";
 	$result = mysqli_query($conn, $sql);
@@ -405,6 +406,50 @@ if (isset($_POST["abo_abi"])) {
 		}
 
 	}
+
+	// EMPLOYEE
+	// DELETE TABLE
+	$sql ="DELETE FROM employee";
+	$result = mysqli_query($conn, $sql);
+
+	if ($excel->setActiveSheetIndex(0)) {
+
+		$i = 1;
+
+		while ($excel->getActiveSheet()->getCell('A'.$i)->getValue() != "") {
+			
+			$kapal 			=$excel->getActiveSheet()->getCell('A'.$i)->getValue();
+			$employee 		=$excel->getActiveSheet()->getCell('B'.$i)->getValue();
+			
+		 	$sql = "INSERT into employee (kapal,employee) 
+		    values ('".$kapal."','".$employee."')";
+
+		    $result = mysqli_query($conn, $sql);
+
+			$i++;
+
+			}
+
+	}
+
+
+	// KURS
+	// UPDATE KURS
+
+	if ($excel->setActiveSheetIndex(4)) {
+
+		$i = 45;
+	
+			$kurs 			=$excel->getActiveSheet()->getCell('B'.$i)->getValue();
+		
+			$sql = "UPDATE detail_kapal set kurs = '".$kurs."'";
+
+		    $result = mysqli_query($conn, $sql);
+
+			}
+
+
+
 
 	header("Location:index.php");	
 
