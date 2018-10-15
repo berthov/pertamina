@@ -128,21 +128,21 @@
                          </fieldset>
                      </form>
 
-                      <form class="form-horizontal" action="import_csv.php" method="post" enctype="multipart/form-data">
-                         <fieldset>
+                      <!-- <form class="form-horizontal" action="import_csv.php" method="post" enctype="multipart/form-data"> -->
+                         <!-- <fieldset> -->
                             <!-- Form Name -->
-                            <legend>MASS ADD NAMA ORANG </legend>
+                            <!-- <legend>MASS ADD NAMA ORANG </legend> -->
      
                             <!-- File Button -->
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="col-md-4 control-label " for="filebutton">Select File</label>
                                 <div class="col-md-4">
                                     <input type="file" name="file" id="file" class="input-large">
                                 </div>
-                            </div>
+                            </div> -->
      
                             <!-- Button -->
-                            <div class="form-group">
+<!--                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="singlebutton">Upload File</label>
                                 <div class="col-md-4">
                                     <input type="hidden" name="employee" value="employee">
@@ -150,7 +150,7 @@
                                 </div>
                             </div>      
                          </fieldset>
-                     </form>
+                     </form> -->
 
                     </div>
                   </div>

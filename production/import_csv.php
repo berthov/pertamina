@@ -455,37 +455,37 @@ if (isset($_POST["abo_abi"])) {
 
 }
 
-if (isset($_POST["employee"])) {
+// if (isset($_POST["employee"])) {
 
-	$excel = PHPExcel_IOFactory::load($_FILES['file']['tmp_name']);
+// 	$excel = PHPExcel_IOFactory::load($_FILES['file']['tmp_name']);
 
-	// DELETE TABLE
-	$sql ="DELETE FROM employee";
-	$result = mysqli_query($conn, $sql);
+// 	// DELETE TABLE
+// 	$sql ="DELETE FROM employee";
+// 	$result = mysqli_query($conn, $sql);
 
-	if ($excel->setActiveSheetIndex(0)) {
+// 	if ($excel->setActiveSheetIndex(0)) {
 
-		$i = 1;
+// 		$i = 1;
 
-		while ($excel->getActiveSheet()->getCell('A'.$i)->getValue() != "") {
+// 		while ($excel->getActiveSheet()->getCell('A'.$i)->getValue() != "") {
 			
-			$kapal 			=$excel->getActiveSheet()->getCell('A'.$i)->getValue();
-			$employee 		=$excel->getActiveSheet()->getCell('B'.$i)->getValue();
+// 			$kapal 			=$excel->getActiveSheet()->getCell('A'.$i)->getValue();
+// 			$employee 		=$excel->getActiveSheet()->getCell('B'.$i)->getValue();
 			
-		 	$sql = "INSERT into employee (kapal,employee) 
-		    values ('".$kapal."','".$employee."')";
+// 		 	$sql = "INSERT into employee (kapal,employee) 
+// 		    values ('".$kapal."','".$employee."')";
 
-		    $result = mysqli_query($conn, $sql);
+// 		    $result = mysqli_query($conn, $sql);
 
-			$i++;
+// 			$i++;
 
-			}
+// 			}
 
-	}
+// 	}
 
-	header("Location:index.php");
+// 	header("Location:index.php");
 
-}
+// }
 
 
 
