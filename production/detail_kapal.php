@@ -91,7 +91,7 @@ $kapal = $_REQUEST['kapal'];
                   where
                   aa.kapal not like ''
                   and aa.kapal = e.kapal
-                 and (e.employee = '".$p_employee."' or  ('".$p_employee."' = '' ) ) 
+                  and (aa.kapal = '".$kapal."' or  ('".$kapal."' = '' ) )
                   ";
     
                   $result = $conn->query($sql);
@@ -106,7 +106,7 @@ $kapal = $_REQUEST['kapal'];
                     <?php if ($p_employee != '') {
                       echo $p_employee;
                     } else {
-                      echo "Technical Fleet - II";
+                      echo $kapal;
                     }
                     ?> </i> </span>
                 </div>

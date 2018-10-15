@@ -217,12 +217,9 @@ else{
                               <tr>
                                 <th>~</th>
                                 <th>NAMA KAPAL</th>
-                                <th>COST CENTER</th>
                                 <th>TECHINCAL SUPERINTENDENT</th>
                                 <th>URAIAN</th>
                                 <th>STATUS PART</th>
-                                <th>COST ELEMENT</th>
-                                <th>COST ELEMENT - URAIAN</th>
                                 <TH>FRL/MD/MM/MIV/2018</TH>
                                 <th>NO PR</th>
                                 <th>TANGGAL PR</th>
@@ -258,12 +255,9 @@ else{
                               <tr>
                                 <td>~</td>
                                 <td><?php echo $row["kapal"]?></td>
-                                <td><?php echo $row["cost_center"]?></td>
                                 <td><?php echo $row["technical_superintendent"]?></td>
                                 <td><?php echo $row["deskripsi"]?></td>
                                 <td><?php echo $row["status_part"]?></td>
-                                <td><?php echo $row["cost_element"]?></td>
-                                <td><?php echo $row["cost_element_desc"]?></td>
                                 <td><?php echo $row["FRL_MD_MM_2018"]?></td>
                                 <td><?php echo $row["pr_number"]?></td>
                                 <td><?php echo $row["pr_date"]?></td>

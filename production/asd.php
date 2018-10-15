@@ -2,6 +2,8 @@
 include("controller/doconnect.php");
 echo "string";
 echo strtotime(' ');
+$upload_date= date('d-m-Y'); // output: current day.
+echo $upload_date;
 ?>
 
 <!DOCTYPE html>

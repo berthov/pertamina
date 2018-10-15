@@ -147,19 +147,17 @@ include("controller/doconnect.php");
                   <div class="x_content">
                     <div class="" role="tabpanel" data-example-id="togglable-tabs">
                       <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true"> <i class="fa fa-level-down"></i> PR VS PO</a>
+                        <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true"> <i class="fa fa-level-down"></i> PR VS PO Bulan</a>
                         </li>
                         <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false"> <i class="fa fa-credit-card-alt"></i> PR Jenis Pengadaan</a>
+                        </li>
+                        <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false"> <i class="fa fa-credit-card-alt"></i> PR Value</a>
+                        </li>
+                        <li role="presentation" class=""><a href="#tab_content4" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false"> <i class="fa fa-credit-card-alt"></i> PR VS PO Kapal</a>
                         </li>
                       </ul>
                       <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-                          <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> -->
 
                             <?php include("query/summary_pr_perbulan_all.php") ?>
 
@@ -180,6 +178,29 @@ include("controller/doconnect.php");
                             <canvas id="mybarChart1"></canvas>
                           </div>
                         </div>
+
+                        <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                        
+                          <div class="x_content">
+                            <p><h2><strong>Per Tahun</strong></h2></p>
+                            <canvas id="canvasDoughnut2"></canvas>
+                          </div>
+                          
+                          <div class="clearfix">
+                          </div>   
+
+                          <div class="x_content">
+                            <p><h2><strong>Per Bulan</strong></h2></p>
+                            <canvas id="mybarChart2"></canvas>
+                          </div>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="home-tab">
+
+                            <?php include("query/summary_kapal.php") ?>
+
+                        </div>
+
                       </div>
                     </div>
 
@@ -234,6 +255,7 @@ include("controller/doconnect.php");
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
+    <script src="../build/js/chart_value.js"></script>
 
     <script type="text/javascript">
               
@@ -461,6 +483,235 @@ include("controller/doconnect.php");
         
       } 
 
+// END OF BAR
+
+
+// BAR VALUE
+
+      if ($('#mybarChart2').length ){ 
+        
+        var ctx = document.getElementById("mybarChart2");
+        var mybarChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: [
+
+          // BULAN
+
+          <?php
+
+          $sql="
+          SELECT
+          distinct date_format(pr.pr_date,'%M') bulan
+          FROM 
+          purchase_request pr
+          where 
+          date_format(pr.pr_date,'%Y') = date_format(sysdate(),'%Y')";
+
+          $result=mysqli_query($conn,$sql);   
+              while($row=mysqli_fetch_array($result)){                   
+              echo "\"";echo $row['bulan'] ; echo "\"" ;echo ",";                  
+                }
+
+          ?>
+
+          ],
+          datasets: [{
+          label: 'Material',
+          backgroundColor: "#5626b9",
+          data: [
+
+          // DATA MATERIAL
+          <?php
+
+          $sql = "
+            SELECT date_format(pr.pr_date,'%M-%Y') as bulan,
+            (select
+              sum(nilai)
+              FROM
+              purchase_request pr1
+              where
+              substr(pr_number, 1,3) like '200%'
+              and date_format(pr.pr_date,'%M-%Y') = date_format(pr1.pr_date,'%M-%Y')
+              and date_format(pr1.pr_date,'%Y') = date_format(sysdate(),'%Y')
+            )count
+            FROM 
+            purchase_request pr
+            where
+            pr.pr_date not like '1970-01-01'
+            and date_format(pr.pr_date,'%Y') = date_format(sysdate(),'%Y')
+            group by date_format(pr.pr_date,'%M-%Y')
+            order by date_format(pr.pr_date,'%m%Y')
+            ";
+
+          $result=mysqli_query($conn,$sql);   
+              while($row=mysqli_fetch_array($result)){                   
+              echo $row['count'];echo ",";                  
+                }
+
+          ?>
+          ]
+          },  {
+          label: 'Jasa',
+          backgroundColor: "#26B99A",
+          data: [
+
+          // DATA JASA
+          <?php
+
+          $sql = "
+            SELECT date_format(pr.pr_date,'%M-%Y') as bulan,
+            (select
+              sum(nilai)
+              FROM
+              purchase_request pr1
+              where
+              substr(pr_number, 1,3) like '300%'
+              and date_format(pr.pr_date,'%M-%Y') = date_format(pr1.pr_date,'%M-%Y')
+              and date_format(pr1.pr_date,'%Y') = date_format(sysdate(),'%Y')
+            )count
+            FROM 
+            purchase_request pr
+            where
+            pr.pr_date not like '1970-01-01'
+            and date_format(pr.pr_date,'%Y') = date_format(sysdate(),'%Y')
+            group by date_format(pr.pr_date,'%M-%Y')
+            order by date_format(pr.pr_date,'%m%Y')
+            ";
+
+          $result=mysqli_query($conn,$sql);   
+              while($row=mysqli_fetch_array($result)){                   
+              echo $row['count'];echo ",";                  
+                }
+
+          ?>
+          ]
+          },  {
+          label: 'Panjar',
+          backgroundColor: "#f40e35",
+          data: [
+
+          // DATA PANJAR
+          <?php
+
+          $sql = "
+            SELECT date_format(pr.pr_date,'%M-%Y') as bulan,
+            (select
+            sum(nilai)              
+            FROM
+              purchase_request pr1
+              where
+              substr(pr_number, 1,3) like '400%'
+              and date_format(pr.pr_date,'%M-%Y') = date_format(pr1.pr_date,'%M-%Y')
+              and date_format(pr1.pr_date,'%Y') = date_format(sysdate(),'%Y')
+            )count
+            FROM 
+            purchase_request pr
+            where
+            pr.pr_date not like '1970-01-01'
+            and date_format(pr.pr_date,'%Y') = date_format(sysdate(),'%Y')
+            group by date_format(pr.pr_date,'%M-%Y')
+            order by date_format(pr.pr_date,'%m%Y')
+            ";
+
+          $result=mysqli_query($conn,$sql);   
+              while($row=mysqli_fetch_array($result)){                   
+              echo $row['count'];echo ",";                  
+                }
+
+          ?>
+
+          ]
+          }, {
+          label: 'Kontrak',
+          backgroundColor: "#bf8383",
+          data: [
+
+          // DATA Kontrak
+          <?php
+
+          $sql = "
+            SELECT date_format(pr.pr_date,'%M-%Y') as bulan,
+            (select
+              sum(nilai)
+              FROM
+              purchase_request pr1
+              where
+              substr(pr_number, 1,3) like '900%'
+              and date_format(pr.pr_date,'%M-%Y') = date_format(pr1.pr_date,'%M-%Y')
+              and date_format(pr1.pr_date,'%Y') = date_format(sysdate(),'%Y')
+            )count
+            FROM 
+            purchase_request pr
+            where
+            pr.pr_date not like '1970-01-01'
+            and date_format(pr.pr_date,'%Y') = date_format(sysdate(),'%Y')
+            group by date_format(pr.pr_date,'%M-%Y')
+            order by date_format(pr.pr_date,'%m%Y')
+            ";
+
+          $result=mysqli_query($conn,$sql);   
+              while($row=mysqli_fetch_array($result)){                   
+              echo $row['count'];echo ",";                  
+                }
+
+          ?>
+
+          ]
+          }, {
+          label: 'Docking',
+          backgroundColor: "#41839b",
+          data: [
+
+          // DATA Docking
+          <?php
+
+          $sql = "
+            SELECT date_format(pr.pr_date,'%M-%Y') as bulan,
+            (select
+              sum(nilai)
+              FROM
+              purchase_request pr1
+              where
+              substr(pr_number, 1,3) like '550%'
+              and date_format(pr.pr_date,'%M-%Y') = date_format(pr1.pr_date,'%M-%Y')
+              and date_format(pr1.pr_date,'%Y') = date_format(sysdate(),'%Y')
+            )count
+            FROM 
+            purchase_request pr
+            where
+            pr.pr_date not like '1970-01-01'
+            and date_format(pr.pr_date,'%Y') = date_format(sysdate(),'%Y')
+            group by date_format(pr.pr_date,'%M-%Y')
+            order by date_format(pr.pr_date,'%m%Y')
+            ";
+
+          $result=mysqli_query($conn,$sql);   
+              while($row=mysqli_fetch_array($result)){                   
+              echo $row['count'];echo ",";                  
+                }
+
+          ?>
+
+          ]
+          }]
+        },
+
+        options: {
+          scales: {
+          yAxes: [{
+            ticks: {
+            beginAtZero: true
+            }
+          }]
+          }
+        }
+        });
+        
+      } 
+
+
+// END OF BAR VALUE
 // DOUGHNUT
       if ($('#canvasDoughnut1').length ){ 
         
@@ -565,7 +816,113 @@ include("controller/doconnect.php");
         });
        
       } 
-      
+// END OF DOUGHNUT
+
+// DOUGHNUT VALUE
+      if ($('#canvasDoughnut2').length ){ 
+        
+        var ctx = document.getElementById("canvasDoughnut2");
+        var data = {
+        labels: [
+          "Material",
+          "Jasa",
+          "Panjar",
+          "Kontrak",
+          "Docking"
+        ],
+        datasets: [{
+          data: [
+
+            <?php
+
+              $sql = "
+              SELECT date_format(pr.pr_date,'%Y') as tahun,
+              (select
+                sum(nilai)
+                FROM
+                purchase_request pr1
+                where
+                substr(pr_number, 1,3) like '200%'
+                and date_format(pr1.pr_date,'%Y') = date_format(sysdate(),'%Y')
+              )material,
+              (select
+                sum(nilai)
+                FROM
+                purchase_request pr1
+                where
+                substr(pr_number, 1,3) like '300%'
+                and date_format(pr1.pr_date,'%Y') = date_format(sysdate(),'%Y')
+              )jasa,
+              (select
+                sum(nilai)
+                FROM
+                purchase_request pr1
+                where
+                substr(pr_number, 1,3) like '400%'
+                and date_format(pr1.pr_date,'%Y') = date_format(sysdate(),'%Y')
+              )panjar,
+              (select
+                sum(nilai)
+                FROM
+                purchase_request pr1
+                where
+                substr(pr_number, 1,3) like '900%'
+                and date_format(pr1.pr_date,'%Y') = date_format(sysdate(),'%Y')
+              )kontrak,
+              (select
+                sum(nilai)
+                FROM
+                purchase_request pr1
+                where
+                substr(pr_number, 1,3) like '550%'
+                and date_format(pr1.pr_date,'%Y') = date_format(sysdate(),'%Y')
+              )docking
+              FROM 
+              purchase_request pr
+              where
+              pr.pr_date not like '1970-01-01'
+              and date_format(pr.pr_date,'%Y') = date_format(sysdate(),'%Y')
+              group by date_format(pr.pr_date,'%Y')
+              order by date_format(pr.pr_date,'%Y')
+              ";
+
+              $result = $conn->query($sql);
+              while($row = $result->fetch_assoc()) {
+                echo $row['material'];echo ",";
+                echo $row['jasa'];echo ",";
+                echo $row['panjar'];echo ",";
+                echo $row['kontrak'];echo ",";
+                echo $row['docking'];        
+              }
+            ?>
+
+          ],
+          backgroundColor: [
+          "#5626b9",
+      "#26B99A",
+          "#f40e35",
+          "#bf8383",
+          "#41839b"
+          ],
+          hoverBackgroundColor: [
+          "#580cf2",
+      "#18ddb4",
+          "#ff002b",
+          "#db5757",
+          "#1692bf"
+          ]
+
+        }]
+        };
+
+        var canvasDoughnut = new Chart(ctx, {
+        type: 'doughnut',
+        tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+        data: data
+        });
+       
+      }
+// END OF DOUGHNUT VALUE
     </script>
   </body>
 </html>

@@ -3,7 +3,7 @@
                           <table class="table table-striped">
                             <thead>
                               <tr>
-                                <th>Bulan</th>
+                                <th>Kapal</th>
                                 <!-- <th>Jumlah PR</th> -->
                                 <th>Total Nilai PR</th>
                                 <!-- <th>Jumlah PO</th> -->
@@ -18,23 +18,17 @@
                           <?php
 
                             $sql = "
-                            SELECT date_format(pr.pr_date,'%M-%Y') as bulan,
-                            date_format(pr.pr_date, '%m/%Y') as month,
-                            count(substr(pr_number, 1,3)) as total,
+                            SELECT pr.kapal,
                             sum(nilai) as nilai_pr,
-                            (SELECT count(po.po_number)
-                            FROM purchase_request po
-                            WHERE
-                            date_format(po.pr_date,'%M-%Y') = date_format(pr.pr_date,'%M-%Y')
-                            and po.po_number not like ''
-                            )as count_po,
                             sum(nilai_po) as nilai_po
                             FROM 
-                            purchase_request pr
+                            purchase_request pr,
+                            employee e
                             where
                             pr.pr_date not like '1970-01-01'
-                            group by date_format(pr.pr_date,'%M-%Y')
-                            order by date_format(pr.pr_date,'%Y%m') asc
+                            and e.kapal=pr.kapal
+                            group by pr.kapal
+                            order by 1 asc
                             ";
 
                               $result = $conn->query($sql);
@@ -42,8 +36,7 @@
                           ?>
 
                               <tr>
-                                <!-- <td><?php echo $row["bulan"];?></td> -->
-                                <td><b><a href="tables_pr.php?bulan=<?php echo $row["month"];?>"><?php echo $row["bulan"];?></a></b></td>
+                                <td><b><a href="tables_pr.php?kapal=<?php echo $row["kapal"];?>"><?php echo $row["kapal"];?></a></b></td>
                                 <!-- <td><?php echo $row["total"];?></td> -->
                                 <td><?php echo number_format($row["nilai_pr"]); echo " IDR";?></td>
                                 <!-- <td><?php echo $row["count_po"];?></td> -->

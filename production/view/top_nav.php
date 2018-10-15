@@ -5,15 +5,29 @@
                 <a id="menu_toggle"><i class="fa fa-bars"></i></a>
               </div>
 
-              <!-- <ul class="nav navbar-nav navbar-right">
+              <ul class="nav navbar-nav navbar-right">
                 </li>
 
                 <li role="presentation" class="dropdown">
-                  <a href="" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-coffee"></i>
+                  <a href="" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false"><h2><i>
+                    <?php
+                    $sql= "select distinct kurs from detail_kapal";
+                          $result = $conn->query($sql);
+                              while($row = $result->fetch_assoc()) {
+                              echo "1 USD = "; echo number_format($row["kurs"]); echo " IDR"; echo "&nbsp"; echo "&nbsp"; echo "&nbsp"; echo "&nbsp";
+                              }
+                    ?>
+
+                    <?php
+                    $sql = "select distinct upload_date from purchase_request";
+                          $result = $conn->query($sql);
+                              while($row = $result->fetch_assoc()) {
+                              echo "Last Updated "; echo $row["upload_date"];
+                              }
+                    ?></i></h2>
                   </a>
                 </li>
-              </ul> -->
+              </ul>
             </nav>
           </div>
         </div>

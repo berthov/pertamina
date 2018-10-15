@@ -2,6 +2,8 @@
 include("controller/doconnect.php");
 require_once 'Classes/PHPExcel.php';
 
+$upload_date= date('Y-m-d'); // output: current day.
+
 if(isset($_POST["pr"])){
 	$excel = PHPExcel_IOFactory::load($_FILES['file']['tmp_name']);
 	// $excel = PHPExcel_IOFactory::load('test.xlsx');
@@ -316,6 +318,10 @@ if(isset($_POST["pr"])){
 
 			}
 		}
+
+
+		$sql = "UPDATE purchase_request set upload_date= '".$upload_date."'";
+		$result = mysqli_query($conn, $sql);
 
 		header("Location:index.php");
 }
