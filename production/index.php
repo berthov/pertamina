@@ -125,7 +125,7 @@ include("controller/doconnect.php");
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2><i class="fa fa-list"></i> PR Summary <small></small></h2>
+                    <h2><i class="fa fa-list"></i> Summary PR <small></small></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -268,6 +268,41 @@ include("controller/doconnect.php");
 
           ],
           datasets: [{
+          label: 'Material',
+          backgroundColor: "#5626b9",
+          data: [
+
+          // DATA MATERIAL
+          <?php
+
+          $sql = "
+            SELECT date_format(pr.pr_date,'%M-%Y') as bulan,
+            (select
+              count(substr(pr_number, 1,3))
+              FROM
+              purchase_request pr1
+              where
+              substr(pr_number, 1,3) like '200%'
+              and date_format(pr.pr_date,'%M-%Y') = date_format(pr1.pr_date,'%M-%Y')
+              and date_format(pr1.pr_date,'%Y') = date_format(sysdate(),'%Y')
+            )count
+            FROM 
+            purchase_request pr
+            where
+            pr.pr_date not like '1970-01-01'
+            and date_format(pr.pr_date,'%Y') = date_format(sysdate(),'%Y')
+            group by date_format(pr.pr_date,'%M-%Y')
+            order by date_format(pr.pr_date,'%m%Y')
+            ";
+
+          $result=mysqli_query($conn,$sql);   
+              while($row=mysqli_fetch_array($result)){                   
+              echo $row['count'];echo ",";                  
+                }
+
+          ?>
+          ]
+          },  {
           label: 'Jasa',
           backgroundColor: "#26B99A",
           data: [
@@ -302,43 +337,7 @@ include("controller/doconnect.php");
 
           ?>
           ]
-          }, {
-          label: 'Material',
-          backgroundColor: "#5626b9",
-          data: [
-
-          // DATA MATERIAL
-          <?php
-
-          $sql = "
-            SELECT date_format(pr.pr_date,'%M-%Y') as bulan,
-            (select
-              count(substr(pr_number, 1,3))
-              FROM
-              purchase_request pr1
-              where
-              substr(pr_number, 1,3) like '200%'
-              and date_format(pr.pr_date,'%M-%Y') = date_format(pr1.pr_date,'%M-%Y')
-              and date_format(pr1.pr_date,'%Y') = date_format(sysdate(),'%Y')
-            )count
-            FROM 
-            purchase_request pr
-            where
-            pr.pr_date not like '1970-01-01'
-            and date_format(pr.pr_date,'%Y') = date_format(sysdate(),'%Y')
-            group by date_format(pr.pr_date,'%M-%Y')
-            order by date_format(pr.pr_date,'%m%Y')
-            ";
-
-          $result=mysqli_query($conn,$sql);   
-              while($row=mysqli_fetch_array($result)){                   
-              echo $row['count'];echo ",";                  
-                }
-
-          ?>
-
-          ]
-          }, {
+          },  {
           label: 'Panjar',
           backgroundColor: "#f40e35",
           data: [
@@ -468,8 +467,8 @@ include("controller/doconnect.php");
         var ctx = document.getElementById("canvasDoughnut1");
         var data = {
         labels: [
-          "Jasa",
           "Material",
+          "Jasa",
           "Panjar",
           "Kontrak",
           "Docking"
@@ -486,17 +485,17 @@ include("controller/doconnect.php");
                 FROM
                 purchase_request pr1
                 where
-                substr(pr_number, 1,3) like '300%'
+                substr(pr_number, 1,3) like '200%'
                 and date_format(pr1.pr_date,'%Y') = date_format(sysdate(),'%Y')
-              )jasa,
+              )material,
               (select
                 count(substr(pr_number, 1,3))
                 FROM
                 purchase_request pr1
                 where
-                substr(pr_number, 1,3) like '200%'
+                substr(pr_number, 1,3) like '300%'
                 and date_format(pr1.pr_date,'%Y') = date_format(sysdate(),'%Y')
-              )material,
+              )jasa,
               (select
                 count(substr(pr_number, 1,3))
                 FROM
@@ -532,8 +531,8 @@ include("controller/doconnect.php");
 
               $result = $conn->query($sql);
               while($row = $result->fetch_assoc()) {
-                echo $row['jasa'];echo ",";
                 echo $row['material'];echo ",";
+                echo $row['jasa'];echo ",";
                 echo $row['panjar'];echo ",";
                 echo $row['kontrak'];echo ",";
                 echo $row['docking'];        
@@ -542,15 +541,15 @@ include("controller/doconnect.php");
 
           ],
           backgroundColor: [
-          "#26B99A",
           "#5626b9",
+		  "#26B99A",
           "#f40e35",
           "#bf8383",
           "#41839b"
           ],
           hoverBackgroundColor: [
-          "#18ddb4",
           "#580cf2",
+		  "#18ddb4",
           "#ff002b",
           "#db5757",
           "#1692bf"

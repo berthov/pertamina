@@ -21,7 +21,7 @@ $kapal = $_REQUEST['kapal'];
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>DataTables | Gentelella</title>
+    <title>Technical Fleet-II</title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -48,14 +48,14 @@ $kapal = $_REQUEST['kapal'];
         <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.php" class="site_title"><i class="fa fa-paw"></i> <span>Welcome</span></a>
+              <a href="index.php" class="site_title"><i class="fa fa-ship"></i> <span>Technical Fleet-II</span></a>
             </div>
 
             <div class="clearfix"></div>
 
              <div class="clearfix"></div>
 
-            <br />
+            <br> <br> <br>
 
             <!-- sidebar menu -->
             <?php include("view/sidebar_menu.php") ?>
@@ -99,36 +99,36 @@ $kapal = $_REQUEST['kapal'];
                 ?>
                 
                 <div class="col-xl-3 col-md-3 col-sm-3 col-xs-6 tile_stats_count">
-                  <span class="count_top"><i class="fa fa-user"></i> Plan 
+                  <span class="count_top"><i class="fa fa-line-chart"></i> Plan 
                     </span>
-                  <div class="count" style="font-size: 25px;"><?php echo "Rp"; echo number_format($row["plan"]);?></div>
+                  <div class="count" style="font-size: 25px;"><?php echo number_format($row["plan"]);  echo " IDR"?></div>
                   <span class="count_bottom" style="font-size: 20px; color: none;"><i style="font-color:white;">
                     <?php if ($p_employee != '') {
                       echo $p_employee;
                     } else {
-                      echo "All";
+                      echo "Technical Fleet - II";
                     }
                     ?> </i> </span>
                 </div>
 
                 <div class="col-xl-3 col-md-3 col-sm-3 col-xs-6 tile_stats_count">
-                  <span class="count_top"><i class="fa fa-user"></i> Actual 
+                  <span class="count_top"><i class="fa fa-line-chart"></i> Actual 
                     </span>
-                  <div class="count" style="font-size: 25px;"><?php echo "Rp"; echo number_format($row["actual"]);?></div>
+                  <div class="count" style="font-size: 25px;"><?php echo number_format($row["actual"]); echo " IDR"?></div>
                   <span class="count_bottom" style="font-size: 20px;"><i class="green"><?php echo round($row["actual"]/$row["plan"]*100,2);?> </i> %</span>
                 </div>
 
                 <div class="col-xl-3 col-md-3 col-sm-3 col-xs-6 tile_stats_count">
-                  <span class="count_top"><i class="fa fa-user"></i> Commitment 
+                  <span class="count_top"><i class="fa fa-line-chart"></i> Commitment 
                     </span>
-                  <div class="count" style="font-size: 25px;"><?php echo "Rp"; echo number_format($row["commitment"]);?></div>
+                  <div class="count" style="font-size: 25px;"><?php echo number_format($row["commitment"]);  echo " IDR"?></div>
                   <span class="count_bottom" style="font-size: 20px;"><i class="green"><?php echo round($row["commitment"]/$row["plan"]*100,2);?> </i> % </span>
                 </div>
 
                 <div class="col-xl-3 col-md-3 col-sm-3 col-xs-6 tile_stats_count">
-                  <span class="count_top"><i class="fa fa-user"></i> Available 
+                  <span class="count_top"><i class="fa fa-line-chart"></i> Available 
                     </span>
-                  <div class="count" style="font-size: 25px;"><?php echo "Rp"; echo number_format($row["available"]);?></div>
+                  <div class="count" style="font-size: 25px;"><?php echo number_format($row["available"]);  echo " IDR"?></div>
                   <span class="count_bottom" style="font-size: 20px;"><i class="green"><?php echo round($row["available"]/$row["plan"]*100,2);?> </i> %</span>
                 </div>
 
@@ -150,7 +150,7 @@ $kapal = $_REQUEST['kapal'];
                       <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
-                        <li class="dropdown">
+                        <!-- <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                           <ul class="dropdown-menu" role="menu">
                             <li><a href="#">Settings 1</a>
@@ -160,7 +160,7 @@ $kapal = $_REQUEST['kapal'];
                           </ul>
                         </li>
                         <li><a class="close-link"><i class="fa fa-close"></i></a>
-                        </li>
+                        </li> -->
                       </ul>
                       <div class="clearfix"></div>
                     </div>
@@ -257,7 +257,7 @@ $kapal = $_REQUEST['kapal'];
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            
+            Technical Fleet-II <a href="www.pertamina.com"><b>Pertamina</b></a>
           </div>
           <div class="clearfix"></div>
         </footer>

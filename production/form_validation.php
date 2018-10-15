@@ -31,7 +31,7 @@
 
             <div class="clearfix"></div>
 
-            <br />
+            <br> <br> <br>
 
             <!-- sidebar menu -->
             <?php include("view/sidebar_menu.php") ?>
