@@ -100,7 +100,7 @@ include ("controller/doconnect.php");
                                 <label class="col-md-4 control-label" for="singlebutton">Upload File</label>
                                 <div class="col-md-4">
                                     <input type="hidden" name="pr" value="pr">
-                                    <button type="submit" class="btn btn-primary button-loading" data-loading-text="Loading...">Upload</button>
+                                    <button type="submit" class="btn btn-primary button-loading" data-loading-text="Just A Moment...">Upload</button>
                                 </div>
                             </div>      
                          </fieldset>
@@ -125,7 +125,7 @@ include ("controller/doconnect.php");
                                 <label class="col-md-4 control-label" for="singlebutton">Upload File</label>
                                 <div class="col-md-4">
                                     <input type="hidden" name="abo_abi" value="abo_abi">
-                                    <button type="submit" class="btn btn-primary button-loading" data-loading-text="Loading...">Upload</button>
+                                    <button type="submit" class="btn btn-primary button-loading" data-loading-text="Just A Moment...">Upload</button>
                                 </div>
                             </div>      
                          </fieldset>

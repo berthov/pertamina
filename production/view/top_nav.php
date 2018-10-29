@@ -9,7 +9,7 @@
                 </li>
 
                 <li role="presentation" class="dropdown">
-                  <a href="" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false"><h2><i>
+                  <a href="" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false"><h2><i><b>
                     <?php
                     $sql= "select distinct kurs from detail_kapal";
                           $result = $conn->query($sql);
@@ -22,9 +22,9 @@
                     $sql = "select distinct upload_date from purchase_request";
                           $result = $conn->query($sql);
                               while($row = $result->fetch_assoc()) {
-                              echo "Last Updated "; echo $row["upload_date"];
+                              echo "Last Updated : "; echo $row["upload_date"];
                               }
-                    ?></i></h2>
+                    ?></b></i></h2>
                   </a>
                 </li>
               </ul>

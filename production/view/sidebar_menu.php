@@ -24,6 +24,11 @@
                       <li><a href="form_validation.php">Upload Form</a></li>
                     </ul>
                   </li>
+				  <li><a><i class="fa fa-book"></i> How To Use <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href=".php">Read</a></li>
+                    </ul>
+                  </li>
                 </ul>
               </div>
 
