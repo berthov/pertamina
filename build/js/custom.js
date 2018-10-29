@@ -2555,7 +2555,9 @@ if (typeof NProgress != 'undefined') {
 				$('#datatable').dataTable();
 
 				$('#datatable-keytable').DataTable({
-				  keys: true
+				  keys: true,
+				  pageLength : 5,
+    			  lengthMenu: [[5], [5]]
 				});
 
 				$('#example-keytable').DataTable({
