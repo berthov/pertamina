@@ -22,7 +22,7 @@
                     $sql = "select distinct upload_date from purchase_request";
                           $result = $conn->query($sql);
                               while($row = $result->fetch_assoc()) {
-                              echo "Last Updated : "; echo $row["upload_date"];
+                              echo "Last Updated : "; echo date('d-M-Y',strtotime($row["upload_date"]));
                               }
                     ?></b></i></h2>
                   </a>
