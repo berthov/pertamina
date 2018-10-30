@@ -38,7 +38,7 @@ else{
     <link href="../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="../build/css/custom.css" rel="stylesheet">
+    <link href="../build/css/custom.min.css" rel="stylesheet">
     <link href="../build/css/jquery.stickytable.css" rel="stylesheet">
 
   
