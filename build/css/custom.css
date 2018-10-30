@@ -4,6 +4,13 @@ html , body{
  height:100%;
  
 }
+
+.fixed_header{
+  position: fixed;
+  top: 0px;
+  width: 100%;
+}
+
  
 .full-width {
 	

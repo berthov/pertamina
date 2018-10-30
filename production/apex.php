@@ -38,7 +38,10 @@ else{
     <link href="../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="../build/css/custom.min.css" rel="stylesheet">
+    <link href="../build/css/custom.css" rel="stylesheet">
+    <link href="../build/css/jquery.stickytable.css" rel="stylesheet">
+
+  
   </head>
 
   <body class="nav-md">
@@ -164,8 +167,9 @@ else{
                       <div class="clearfix"></div>
                     </div>
                     
-					<div class="x_content">
+					          <div class="x_content">
                       <div class="col-lg-9 col-md-9 hidden-xs">
+                        <h4><p style="text-align: center;"><strong>ANGGARAN OPERASIONAL KAPAL Technical Fleet - II 2018</strong></p></h4>
                       </div>
                       <div class="col-lg-3 col-md-3 col-xs-12 pull-right">
                         
@@ -188,23 +192,20 @@ else{
                         </select>
                       </div>
                       <div class="x_content" style="padding-top: 20px;">
-                        <table class="table table-bordered">
-                          <tbody>
-                            <tr>
-                              <th rowspan="2" style="text-align: center;vertical-align: middle;">No</th>
-                              <th rowspan="2" style="text-align: center;vertical-align: middle;">Nama Kapal</th>
-                              <th rowspan="2" style="text-align: center;vertical-align: middle;">Currency</th>
-                              <th colspan="4" style="text-align: center;">ANGGARAN OPERASIONAL KAPAL Technical Fleet - II 2018</th>
-                              <th rowspan="2" style="text-align: center;vertical-align: middle;">Sisa</th>
-                            </tr>
-
-                            <tr>
-                              <th style="text-align: center;">Plan</th>
-                              <th style="text-align: center;">Actual</th>
-                              <th style="text-align: center;">Commitment</th>
-                              <th style="text-align: center;">Available</th>
-                            </tr>
-
+                        <div class="sticky-table sticky-ltr-cells">
+                        <table class="table table-bordered ">
+                            <thead>
+                              <tr class="sticky-header">
+                                <th rowspan="2" style="text-align: center;vertical-align: middle;" class="sticky-cell">No</th>
+                                <th style="text-align: center;vertical-align: middle;">Nama Kapal</th>
+                                <th style="text-align: center;vertical-align: middle;">Currency</th>
+                                <th style="text-align: center;">Plan</th>
+                                <th style="text-align: center;">Actual</th>
+                                <th style="text-align: center;">Commitment</th>
+                                <th style="text-align: center;">Available</th>
+                                <th style="text-align: center;vertical-align: middle;">Sisa</th>
+                              </tr>
+                            </thead>
                             <?php
 
                               $sql = "SELECT 
@@ -221,33 +222,36 @@ else{
                               while($row = $result->fetch_assoc()) {
 
                               ?>
-                              <tr align="right">
-                                <th rowspan="2" style="text-align: center;vertical-align: middle;"><?php echo $row["row"] ?></th>
-                                <th scope="row"><a href="detail_kapal.php?kapal=<?php echo $row["kapal"]?>&employee=<?php echo $p_employee;?>"><?php echo $row["kapal"] ?></a></th>
-                                <td align="center"><?php echo $row["curr"] ?></td>
-                                <td><?php echo number_format($row["plan"]) ?></td>
-                                <td><?php echo number_format($row["actual"]) ?></td>
-                                <td><?php echo number_format($row["commitment"]) ?></td>
-                                <td><?php echo number_format($row["available"]) ?></td>
-                                <td rowspan="2" style="text-align: center;vertical-align: middle;"><?php echo round($row["available"]/$row["plan"] * 100,2) ?>%</td>
-                              </tr>
-                              <tr align="right">
-                                <th scope="row"><?php echo $row["cost_center"] ?></th>
-                                <td align="center"><?php echo $row["curr_usd"] ?></td>
-                                <td><?php echo number_format($row["plan_usd"]) ?></td>
-                                <td><?php echo number_format($row["actual_usd"]) ?></td>
-                                <td><?php echo number_format($row["commitment_usd"]) ?></td>
-                                <td><?php echo number_format($row["available_usd"]) ?></td>
-                              </tr>
-                            
-                            <?php
-                            
-                            }
-                            
-                            ?>
 
-                          </tbody>
+                              <tbody>
+                                <tr align="right">
+                                  <th class="sticky-cell" rowspan="2" style="text-align:center;vertical-align: middle;"><?php echo $row["row"] ?></th>
+                                  <th scope="row" style="text-align:left;vertical-align: middle;"><a href="detail_kapal.php?kapal=<?php echo $row["kapal"]?>&employee=<?php echo $p_employee;?>"><?php echo $row["kapal"] ?></a></th>
+                                  <td align="center"><?php echo $row["curr"] ?></td>
+                                  <td><?php echo number_format($row["plan"]) ?></td>
+                                  <td><?php echo number_format($row["actual"]) ?></td>
+                                  <td><?php echo number_format($row["commitment"]) ?></td>
+                                  <td><?php echo number_format($row["available"]) ?></td>
+                                  <td rowspan="2" style="text-align: center;vertical-align: middle;"><?php echo round($row["available"]/$row["plan"] * 100,2) ?>%</td>
+                                </tr>
+                                <tr align="right">
+                                  <th scope="row"><?php echo $row["cost_center"] ?></th>
+                                  <td align="center"><?php echo $row["curr_usd"] ?></td>
+                                  <td><?php echo number_format($row["plan_usd"]) ?></td>
+                                  <td><?php echo number_format($row["actual_usd"]) ?></td>
+                                  <td><?php echo number_format($row["commitment_usd"]) ?></td>
+                                  <td><?php echo number_format($row["available_usd"]) ?></td>
+                                </tr>
+                              
+                              <?php
+                              
+                              }
+                              
+                              ?>
+
+                              </tbody>
                         </table>
+                        </div>
                       </div>
 
                     </div>
@@ -303,6 +307,7 @@ else{
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
+    <script src="../build/js/jquery.stickytable.js" type="text/javascript"></script>
 
     <script type="text/javascript">
   
@@ -311,6 +316,8 @@ else{
                 this.form.submit();
               });
     });
+
+
     </script>
   </body>
 </html>

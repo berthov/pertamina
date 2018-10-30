@@ -793,14 +793,14 @@ include("controller/doconnect.php");
           ],
           backgroundColor: [
           "#5626b9",
-		  "#26B99A",
+		      "#26B99A",
           "#f40e35",
           "#bf8383",
           "#41839b"
           ],
           hoverBackgroundColor: [
           "#580cf2",
-		  "#18ddb4",
+		      "#18ddb4",
           "#ff002b",
           "#db5757",
           "#1692bf"
