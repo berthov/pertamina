@@ -147,23 +147,28 @@ include("controller/doconnect.php");
                   <div class="x_content">
                     <div class="" role="tabpanel" data-example-id="togglable-tabs">
                       <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#tab_content4" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="true"> <i class="fa fa-credit-card-alt"></i> PR VS PO Kapal</a>
+                        <li role="presentation" class="active"><a href="#tab_content1" role="tab" id="home-tab" data-toggle="tab" aria-expanded="true"> <i class="fa fa-ship"></i> PR VS PO Kapal</a>
                         </li>
-						<li role="presentation" class=""><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="false"> <i class="fa fa-level-down"></i> PR VS PO Bulan</a>
+						<li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false"> <i class="fa fa-calendar"></i> PR VS PO Bulan</a>
                         </li>
-                        <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false"> <i class="fa fa-credit-card-alt"></i> PR Jenis Pengadaan</a>
+                        <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false"> <i class="fa fa-credit-card-alt"></i> PR Jenis Pengadaan</a>
                         </li>
-                        <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false"> <i class="fa fa-credit-card-alt"></i> PR Value</a>
+                        <li role="presentation" class=""><a href="#tab_content4" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false"> <i class="fa fa-credit-card-alt"></i> PR Value</a>
                         </li>
                       </ul>
                       <div id="myTabContent" class="tab-content">
-                        <div role="tabpanel" class="tab-pane fade" id="tab_content1" aria-labelledby="profile-tab">
+                        <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+
+                            <?php include("query/summary_kapal.php") ?>
+
+                        </div>
+						<div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
 
                             <?php include("query/summary_pr_perbulan_all.php") ?>
 
                         </div>
 
-                        <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                        <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
                         
                           <div class="x_content">
                             <p><h2><strong>Per Tahun</strong></h2></p>
@@ -179,7 +184,7 @@ include("controller/doconnect.php");
                           </div>
                         </div>
 
-                        <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
+                        <div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="profile-tab">
                         
                           <div class="x_content">
                             <p><h2><strong>Per Tahun</strong></h2></p>
@@ -194,13 +199,6 @@ include("controller/doconnect.php");
                             <canvas id="mybarChart2"></canvas>
                           </div>
                         </div>
-
-                        <div role="tabpanel" class="tab-pane fade active in" id="tab_content4" aria-labelledby="home-tab">
-
-                            <?php include("query/summary_kapal.php") ?>
-
-                        </div>
-
                       </div>
                     </div>
 

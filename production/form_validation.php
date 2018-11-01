@@ -52,7 +52,7 @@ include ("controller/doconnect.php");
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3><b>Form Upload</b></h3>
+                <h3><i class="fa fa-upload"></i><b> Form Upload</b></h3>
               </div>
             </div>
             <div class="clearfix"></div>
@@ -85,7 +85,7 @@ include ("controller/doconnect.php");
                       <form class="form-horizontal" action="import_csv.php" method="post" enctype="multipart/form-data">
                          <fieldset>
                             <!-- Form Name -->
-                            <legend>Daftar PR</legend>
+                            <legend><i class="fa fa-list"></i> Daftar PR</legend>
      
                             <!-- File Button -->
                             <div class="form-group">
@@ -110,7 +110,7 @@ include ("controller/doconnect.php");
                       <form class="form-horizontal" action="import_csv.php" method="post" enctype="multipart/form-data">
                          <fieldset>
                             <!-- Form Name -->
-                            <legend>Summary ABO ABI </legend>
+                            <legend><i class="fa fa-list"></i> Summary ABO ABI </legend>
      
                             <!-- File Button -->
                             <div class="form-group">

@@ -169,7 +169,7 @@ else{
                     
 					          <div class="x_content">
                       <div class="col-lg-9 col-md-9 hidden-xs">
-                        <h4><p style="text-align: center;"><strong>ANGGARAN OPERASIONAL KAPAL Technical Fleet - II 2018</strong></p></h4>
+                        <h4><p style="text-align: center;"><strong>ANGGARAN OPERASIONAL KAPAL TECHNICAL FLEET-II 2018</strong></p></h4>
                       </div>
                       <div class="col-lg-3 col-md-3 col-xs-12 pull-right">
                         

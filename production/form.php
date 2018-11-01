@@ -65,7 +65,7 @@ include ("controller/doconnect.php");
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3><b>Search PR</b></h3>
+                <h3><i class="fa fa-search"></i><b> Search PR</b></h3>
               </div>
             </div>
 			
