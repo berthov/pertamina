@@ -105,7 +105,7 @@ else{
 
             <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
-                <!-- <div class="x_panel">
+                <div class="x_panel">
                   <div class="x_title">
                     <h1><i class="fa fa-filter"></i> Filter</h1>
                     <ul class="nav navbar-right panel_toolbox">
@@ -180,7 +180,7 @@ else{
 
                     </form>
                   </div>
-                </div> -->
+                </div>
               </div>
             </div>
 
@@ -333,14 +333,16 @@ else{
     <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
     <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-    <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-    <!-- bootstrap-daterangepicker -->
+    <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script
+>    <!-- bootstrap-daterangepicker -->
     <script src="../vendors/moment/min/moment.min.js"></script>
+    <script src="../vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.js"></script>
 
-  <script>
-    
+   <script type="text/javascript">
+
     $('#myDatepicker2').datetimepicker({
         viewMode: 'years',
         format: 'MM/YYYY'

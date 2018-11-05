@@ -5,7 +5,7 @@
  * $(window).smartresize(function(){  
  *     // code here
  * });
- */ 
+ */
 (function($,sr){
     // debouncing function from John Hann
     // http://unscriptable.com/index.php/2009/03/20/debouncing-javascript-methods/
@@ -2556,12 +2556,8 @@ if (typeof NProgress != 'undefined') {
 
 				$('#datatable-keytable').DataTable({
 				  keys: true,
-				  pageLength : 5,
-    			  lengthMenu: [[5], [5]]
-				});
-
-				$('#example-keytable').DataTable({
-				  keys: true
+				  "scrollY": 600,
+        		  "scrollX": true
 				});
 
 				$('#datatable-responsive').DataTable();

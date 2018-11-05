@@ -4,13 +4,6 @@ html , body{
  height:100%;
  
 }
-
-.fixed_header{
-  position: fixed;
-  top: 0px;
-  width: 100%;
-}
-
  
 .full-width {
 	
@@ -1014,7 +1007,7 @@ article.media {
     float: left
 }
 h2 {
-    font-size: 30px;
+    font-size: 18px;
     font-weight: 400
 }
 #left,

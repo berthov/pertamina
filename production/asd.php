@@ -1,112 +1,264 @@
 <?php
 include("controller/doconnect.php");
-echo "string";
-echo strtotime(' ');
-$upload_date= date('d-m-Y'); // output: current day.
-echo $upload_date;
+
+
+if(isset($_REQUEST['bulan'])){
+  $date = $_REQUEST['bulan'];
+}
+else{
+ $date = ''; 
+}
+
+if(isset($_REQUEST['item'])){
+  $item = $_REQUEST['item'];
+}
+else{
+ $item = ''; 
+}
+
+if(isset($_REQUEST['kapal'])){
+  $kapal = $_REQUEST['kapal'];
+}
+else{
+ $kapal = ''; 
+}
+
+if(isset($_REQUEST['vendor'])){
+  $vendor = $_REQUEST['vendor'];
+}
+else{
+ $vendor = ''; 
+}
+
 ?>
 
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <title>Technical Fleet-II</title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
     <!-- Datatables -->
     <link href="../vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
     <link href="../vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
     <link href="../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
     <link href="../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
     <link href="../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- bootstrap-datetimepicker -->
+    <link href="../vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <!-- Ion.RangeSlider -->
+    <link href="../vendors/normalize-css/normalize.css" rel="stylesheet">
+    <link href="../vendors/ion.rangeSlider/css/ion.rangeSlider.css" rel="stylesheet">
+    <link href="../vendors/ion.rangeSlider/css/ion.rangeSlider.skinFlat.css" rel="stylesheet">
+    <!-- Bootstrap Colorpicker -->
+    <link href="../vendors/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.css" rel="stylesheet">
 
-    <style type="text/css" class="init">
-    
-    tfoot input {
-        width: 100%;
-        padding: 3px;
-        box-sizing: border-box;
-    }
+  </head>
 
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col menu_fixed">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="index.php" class="site_title"><i class="fa fa-ship"></i> <span>Technical Fleet-II</span></a>
+            </div>
 
+            <div class="clearfix"></div>
 
-    </style>
+             <div class="clearfix"></div>
 
-    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+            <br />
 
-    <script type="text/javascript" class="init">
-    
+            <!-- sidebar menu -->
+            <?php include("view/sidebar_menu.php") ?>
+            <!-- /sidebar menu -->
 
-$(document).ready(function() {
-    // Setup - add a text input to each footer cell
-    $('#example-keytable tfoot th').each( function () {
-        var title = $(this).text();
-        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
-    } );
+          </div>
+        </div>
 
-    // DataTable
-    var table = $('#example-keytable').DataTable();
+        <!-- top navigation -->
+        <?php include("view/top_nav.php") ?>
+        <!-- /top navigation -->
 
-    // Apply the search
-    table.columns().every( function () {
-        var that = this;
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="clearfix"></div>
 
-        $( 'input', this.footer() ).on( 'keyup change', function () {
-            if ( that.search() !== this.value ) {
-                that
-                    .search( this.value )
-                    .draw();
-            }
-        } );
-    } );   
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h1><i class="fa fa-filter"></i> Filter</h1>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    
+                    <div class="clearfix"></div>
+                  </div>
+                  
+                  <div class="x_content">
+                    <br />
+                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="tables_pr.php" method="post">
 
-    $('#example-keytable tfoot tr').appendTo('#example-keytable thead');
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nama Kapal<span class="required"></span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="first-name" class="form-control col-md-7 col-xs-12" name="kapal" placeholder=<?php echo $kapal; ?>>
+                        </div>
+                      </div>
 
-} );
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Uraian<span class="required"></span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="first-name" class="form-control col-md-7 col-xs-12" name="item" placeholder=<?php echo $item; ?>>
+                        </div>
+                      </div>
 
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nama Vendor/User<span class="required"></span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="first-name" class="form-control col-md-7 col-xs-12" name="vendor">
+                        </div>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Bulan PR<span class="required"></span>
+                        </label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                          <div class="form-group">
+                              <div class='input-group date' id='myDatepicker2'>
+                                  <input type='text' class="form-control" name="bulan" autocomplete="off">
+                                  <span class="input-group-addon">
+                                     <span class="glyphicon glyphicon-calendar"></span>
+                                  </span>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
 
-    </script>
-</head>
-<body class="wide comments example">
-    <a name="top" id="top"></a>
-    <div class="fw-container">
-        <div class="fw-body">
-            <div class="content">
-                <h1 class="page_title">Individual column searching (text inputs)</h1>
-                <table id="example-keytable" class="table table-striped table-bordered">
-                    <thead>
-                      <tr>
-                        <th>~</th>
-                        <th>KAPAL</th>
-                        <th>COST CENTER</th>
-                        <th>TECHINCAL SUPERINTENDENT</th>
-                        <th>DESKRIPSI</th>
-                        <th>STATUS PART</th>
-                        <th>COST ELEMENT</th>
-                        <th>COST ELEMENT-DESC</th>
-                        <TH>FRL/MD/MM/2018</TH>
-                        <th>NO PR</th>
-                        <th>DATE PR</th>
-                        <th>NILAI PR</th>
-                        <th>NO PO</th>
-                        <th>DATE PO</th>
-                        <th>NILAI PO</th>
-                        <th>SA/GR NO</th>
-                        <th>SA/GR DATE</th>
-                        <th>NAMA VENDOR/USER</th>
-                      </tr>
-                    </thead>
+                      <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                          <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                      </div>
+
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2><b>Purchase Request (PR) Summary</b></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <!-- <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li> -->
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  
+                  <div class="x_content">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div class="card-box table-responsive">
+
+                          <table id="datatable-keytable" class="table table-striped table-bordered">
+                            <thead>
+                              <tr>
+                                <th>NAMA KAPAL</th>
+                                <th>TECHINCAL SUPERINTENDENT</th>
+                                <th>URAIAN</th>
+                                <th>STATUS PART</th>
+                                <TH>FRL/MD/MM/MIV/2018</TH>
+                                <th>NO PR</th>
+                                <th>TANGGAL PR</th>
+                                <th>NILAI PR</th>
+                                <th>NO PO</th>
+                                <th>TANGGAL PO</th>
+                                <th>NILAI PO</th>
+                                <th>NO SA/GR</th>
+                                <th>TANGGAL SA/GR</th>
+                                <th>NAMA VENDOR/USER</th>
+                              </tr>
+                            </thead>
+
                             <tbody>
 
                           <?php
 
-                              $sql = "SELECT pr.* 
+                              $sql = "SELECT 
+                                pr.kapal,
+                                pr.technical_superintendent,
+                                pr.deskripsi,
+                                pr.status_part,
+                                pr.FRL_MD_MM_2018,
+                                pr.pr_number,
+                                pr.pr_date,
+                                pr.nilai,
+                                pr.po_number,
+                                pr.po_date,
+                                pr.nilai_po,
+                                pr.sa_number,
+                                pr.sa_date,
+                                pr.vendor 
                                 FROM 
                                 purchase_request pr
                                 WHERE
-                                pr.kapal not like ''
+                                pr.kapal not like ''                              
+                                and (date_format(pr_date,'%m/%Y') like '".$date."' or ('".$date."' = ''))
+                                and (kapal like '%$kapal%' or ('".$kapal."' = '') ) 
+                                and (deskripsi like '%$item%' or ('".$item."' = '') ) 
+                                and (vendor like '%$vendor%' or ('".$vendor."' = '') ) 
                                 ";
 
                               $result = $conn->query($sql);
@@ -114,20 +266,26 @@ $(document).ready(function() {
                           ?>
 
                               <tr>
-                                <td>~</td>
                                 <td><?php echo $row["kapal"]?></td>
-                                <td><?php echo $row["cost_center"]?></td>
                                 <td><?php echo $row["technical_superintendent"]?></td>
                                 <td><?php echo $row["deskripsi"]?></td>
                                 <td><?php echo $row["status_part"]?></td>
-                                <td><?php echo $row["cost_element"]?></td>
-                                <td><?php echo $row["cost_element_desc"]?></td>
                                 <td><?php echo $row["FRL_MD_MM_2018"]?></td>
                                 <td><?php echo $row["pr_number"]?></td>
                                 <td><?php echo $row["pr_date"]?></td>
                                 <td><?php echo number_format($row["nilai"])?></td>
                                 <td><?php echo $row["po_number"]?></td>
-                                <td><?php echo $row["po_date"]?></td>
+                                <td>
+                                
+                                <?php if ($row["po_date"] === '0000-00-00') {
+                                  echo "";
+                                } else{
+                                  echo $row["po_date"];
+                                }
+
+                                ?>
+                                  
+                                </td>
                                 <td><?php echo number_format($row["nilai_po"])?></td>
                                 <td><?php echo $row["sa_number"]?></td>
                                 <td><?php echo $row["sa_date"]?></td>
@@ -138,33 +296,29 @@ $(document).ready(function() {
                           }
                           ?>
                             </tbody>
-                    <tfoot>
-                        <tr>
-                        <th>~</th>
-                        <th>KAPAL</th>
-                        <th>COST CENTER</th>
-                        <th>TECHINCAL SUPERINTENDENT</th>
-                        <th>DESKRIPSI</th>
-                        <th>STATUS PART</th>
-                        <th>COST ELEMENT</th>
-                        <th>COST ELEMENT-DESC</th>
-                        <TH>FRL/MD/MM/2018</TH>
-                        <th>NO PR</th>
-                        <th>DATE PR</th>
-                        <th>NILAI PR</th>
-                        <th>NO PO</th>
-                        <th>DATE PO</th>
-                        <th>NILAI PO</th>
-                        <th>SA/GR NO</th>
-                        <th>SA/GR DATE</th>
-                        <th>NAMA VENDOR/USER</th>
-                        </tr>
-                    </tfoot>
-                </table>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            Technical Fleet-II <a href="www.pertamina.com"><b>Pertamina</b></a>
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
     </div>
-</body>
+
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -178,20 +332,13 @@ $(document).ready(function() {
     <!-- Datatables -->
     <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-    <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
     <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
     <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-    <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-    <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-    <script src="../vendors/jszip/dist/jszip.min.js"></script>
-    <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
-    <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
-
+    <!-- bootstrap-daterangepicker -->
+    <script src="../vendors/moment/min/moment.min.js"></script>
     <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.js"></script>
+    <script src="../build/js/custom.min.js"></script>
+
+
+  </body>
 </html>
