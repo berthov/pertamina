@@ -88,6 +88,14 @@ include("controller/doconnect.php");
                   </span>
                 <div class="count" style="font-size: 25px;"><a href="apex.php"><?php echo number_format($row["plan"]); echo " IDR";?></a></div>
                 <span class="count_bottom" style="font-size: 20px;color:#F7F7F7"></span>
+				
+				<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="apex.php" method="post">
+				<div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                          <button type="submit" class="btn btn-success">Lihat Anggaran</button>
+                        </div>
+                </div>
+				</form>
               </div>
 
               <div class="col-xl-3 col-md-3 col-sm-3 col-xs-6 tile_stats_count">

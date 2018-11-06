@@ -73,7 +73,7 @@ else{
         <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
-            <form class="form-horizontal" action="apex.php" method="post">
+            <form class="form-horizontal" action="new_1.php" method="post">
               <!-- top tiles -->
               <div class="row tile_count" align="center">
                 <!-- SUMMARY ABO ABI -->
@@ -168,10 +168,16 @@ else{
                     </div>
                     
 					<div class="x_content">
-                      <div class="col-lg-9 col-md-9 hidden-xs">
-                        <h4><p style="text-align: center;"><strong>ANGGARAN OPERASIONAL KAPAL TECHNICAL FLEET-II 2018</strong></p></h4>
-                      </div>
-                      <div class="col-lg-3 col-md-3 col-xs-12 pull-right">
+                      <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                      <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#tab_content1a" role="tab" id="home-tab" data-toggle="tab" aria-expanded="true"> <i class="fa fa-money"></i> ANGGARAN OPERASIONAL KAPAL TECHNICAL FLEET-II</a>
+                        </li>
+						<li role="presentation" class=""><a href="#tab_content2b" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false"> <i class="fa fa-money"></i> ANGGARAN COST ELEMENT </a>
+                        </li>
+					<div class="clearfix"></div>
+					
+                      <div role="tabpanel" class="tab-pane fade in" id="tab_content1a" aria-labelledby="home-tab">
+					  <div class="col-lg-3 col-md-3 col-xs-12 pull-right">
                         
                         <select name="employee" id="category" class="form-control col-lg-3 col-md-3 col-xs-4 category" style="margin-top:10px">
                           <option value="" disabled selected >Select Technical Superintendent</option>
@@ -253,7 +259,77 @@ else{
                         </table>
                         </div>
                       </div>
+					</div>
+					
+					<div role="tabpanel" class="tab-pane fade" id="tab_content2b" aria-labelledby="profile-tab">
+					<div class="x_content" style="padding-top: 20px;">
+					<div class="col-lg-9 col-md-9 hidden-xs">
+                      </div>
+                        <table class="table table-bordered">
+                          <tbody>
+                            <tr>
+                              <th style="text-align: center;vertical-align: middle;">Cost Element</th>
+                              <th style="text-align: center;">Currency</th>
+                              <th style="text-align: center;">Plan</th>
+                              <th style="text-align: center;">Actual</th>
+                              <th style="text-align: center;">Commitment</th>
+                              <th style="text-align: center;">Available</th>
+                            </tr>
 
+                            <!-- <?php
+
+                              $sql = "SELECT oa.cost_center,aa.* 
+                              FROM detail_kapal aa,
+                              employee e,
+                              opex_apex oa
+                              where
+                              aa.kapal not like ''
+                              and aa.kapal = e.kapal
+                              and aa.kapal = oa.kapal
+                              and (e.employee = '".$p_employee."' or  ('".$p_employee."' = '' ) ) 
+                              and e.kapal = '".$kapal."'
+                              and 
+                              (aa.cost_element like '%6001011110%' or 
+                              aa.cost_element like '%6001013120%' or
+                              aa.cost_element like '%6001013130%' or
+                              aa.cost_element like '%6001013210%' or
+                              aa.cost_element like '%6001014170%' or
+                              aa.cost_element like '%6001020100%' or
+                              aa.cost_element like '%6001022190%' )
+                              order by cost_element
+                              ";
+                              $result = $conn->query($sql);
+                              while($row = $result->fetch_assoc()) {
+
+                              ?>
+                              <tr align="right">
+                                <th scope="row" rowspan="2" style="text-align: center;vertical-align: middle;"><?php echo $row["cost_element"] ?></th>
+                                <td style="text-align: center;vertical-align: middle;">IDR</td>
+                                <td><?php echo number_format($row["plan"]*$row["kurs"]) ?></td>
+                                <td><?php echo number_format($row["actual"]*$row["kurs"]) ?></td>
+                                <td><?php echo number_format($row["commitment"]*$row["kurs"]) ?></td>
+                                <td><?php echo number_format($row["available"]*$row["kurs"]) ?></td>
+                              </tr>
+
+                              <tr align="right">
+                                <td style="text-align: center;vertical-align: middle;">USD</td>
+                                <td><?php echo number_format($row["plan"]) ?></td>
+                                <td><?php echo number_format($row["actual"]) ?></td>
+                                <td><?php echo number_format($row["commitment"]) ?></td>
+                                <td><?php echo number_format($row["available"]) ?></td>
+                              </tr>
+
+                            <?php
+                            
+                            }
+                            
+                            ?> -->
+
+                          </tbody>
+                        </table>
+                      </div>
+					</div>
+					
                     </div>
                   </div>
                 </div>
