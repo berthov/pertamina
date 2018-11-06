@@ -167,7 +167,7 @@ else{
                       <div class="clearfix"></div>
                     </div>
                     
-					<div class="x_content">
+				           <div class="x_content">
                       <div class="col-lg-9 col-md-9 hidden-xs">
                         <h4><p style="text-align: center;"><strong>ANGGARAN OPERASIONAL KAPAL TECHNICAL FLEET-II 2018</strong></p></h4>
                       </div>

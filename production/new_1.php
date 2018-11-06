@@ -152,189 +152,180 @@ else{
                       <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
-                        <!-- <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                          <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Settings 1</a>
-                            </li>
-                            <li><a href="#">Settings 2</a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                        </li> -->
                       </ul>
                       <div class="clearfix"></div>
                     </div>
-                    
-					<div class="x_content">
+                    <div class="x_content">
                       <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                      <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#tab_content1a" role="tab" id="home-tab" data-toggle="tab" aria-expanded="true"> <i class="fa fa-money"></i> ANGGARAN OPERASIONAL KAPAL TECHNICAL FLEET-II</a>
-                        </li>
-						<li role="presentation" class=""><a href="#tab_content2b" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false"> <i class="fa fa-money"></i> ANGGARAN COST ELEMENT </a>
-                        </li>
-					<div class="clearfix"></div>
-					
-                      <div role="tabpanel" class="tab-pane fade in" id="tab_content1a" aria-labelledby="home-tab">
-					  <div class="col-lg-3 col-md-3 col-xs-12 pull-right">
-                        
-                        <select name="employee" id="category" class="form-control col-lg-3 col-md-3 col-xs-4 category" style="margin-top:10px">
-                          <option value="" disabled selected >Select Technical Superintendent</option>
-                          <option value="all">Technical Fleet II</option>
-                          
-                           <?php
-                            $sql = "SELECT distinct employee 
-                            FROM employee
-                            ";
-                            $result = $conn->query($sql);
-                            while($row = $result->fetch_assoc()) {
-                          ?>
-                              <option value="<?php echo $row["employee"] ?>"> <?php echo $row["employee"] ?></option>
-                          <?php
-                            }
-                          ?>
+                        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                          <li role="presentation" class="active"><a href="#tab_content1" role="tab" id="home-tab" data-toggle="tab" aria-expanded="true"> <i class="fa fa-ship"></i> ANGGARAN OPERASIONAL KAPAL TECHNICAL FLEET-II</a>
+                          </li>
+                          <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false"> <i class="fa fa-calendar"></i> ANGGARAN COST ELEMENT</a>
+                          </li>
+                        </ul>
+                        <div id="myTabContent" class="tab-content">
+                          <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
 
-                        </select>
-                      </div>
-                      <div class="x_content" style="padding-top: 20px;">
-                        <div class="sticky-table sticky-ltr-cells">
-                        <table class="table table-bordered ">
-                            <thead>
-                              <tr class="sticky-header">
-                                <th rowspan="2" style="text-align: center;vertical-align: middle;" class="sticky-cell">No</th>
-                                <th style="text-align: center;vertical-align: middle;">Nama Kapal</th>
-                                <th style="text-align: center;vertical-align: middle;">Currency</th>
-                                <th style="text-align: center;">Plan</th>
-                                <th style="text-align: center;">Actual</th>
-                                <th style="text-align: center;">Commitment</th>
-                                <th style="text-align: center;">Available</th>
-                                <th style="text-align: center;vertical-align: middle;">Sisa</th>
-                              </tr>
-                            </thead>
-                            <?php
+                            <div class="col-lg-9 col-md-9 hidden-xs">
+                              <h4><p style="text-align: center;"><strong>ANGGARAN OPERASIONAL KAPAL TECHNICAL FLEET-II 2018</strong></p></h4>
+                            </div>
 
-                              $sql = "SELECT 
-                              @i:=@i+1 as row,aa.* 
-                              FROM opex_apex aa,
-                              employee e,
-                              (SELECT @i:=0) as foo
-                              where
-                              aa.kapal not like ''
-                              and aa.kapal = e.kapal
-                              and (e.employee = '".$p_employee."' or  ('".$p_employee."' = '' ) ) 
-                              ";
-                              $result = $conn->query($sql);
-                              while($row = $result->fetch_assoc()) {
+                            <div class="col-lg-3 col-md-3 col-xs-12 pull-right">  
+                              <select name="employee" id="category" class="form-control col-lg-3 col-md-3 col-xs-4 category" style="margin-top:10px">
+                                <option value="" disabled selected >Select Technical Superintendent</option>
+                                <option value="all">Technical Fleet II</option>
+                                
+                                 <?php
+                                  $sql = "SELECT distinct employee 
+                                  FROM employee
+                                  ";
+                                  $result = $conn->query($sql);
+                                  while($row = $result->fetch_assoc()) {
+                                ?>
+                                    <option value="<?php echo $row["employee"] ?>"> <?php echo $row["employee"] ?></option>
+                                <?php
+                                  }
+                                ?>
+                              </select>
+                            </div>
 
-                              ?>
+                            <div class="x_content" style="padding-top: 20px;">
+                              <div class="sticky-table sticky-ltr-cells">
+                              <table class="table table-bordered ">
+                                  <thead>
+                                    <tr class="sticky-header">
+                                      <th rowspan="2" style="text-align: center;vertical-align: middle;" class="sticky-cell">No</th>
+                                      <th style="text-align: center;vertical-align: middle;">Nama Kapal</th>
+                                      <th style="text-align: center;vertical-align: middle;">Currency</th>
+                                      <th style="text-align: center;">Plan</th>
+                                      <th style="text-align: center;">Actual</th>
+                                      <th style="text-align: center;">Commitment</th>
+                                      <th style="text-align: center;">Available</th>
+                                      <th style="text-align: center;vertical-align: middle;">Sisa</th>
+                                    </tr>
+                                  </thead>
+                                  <?php
 
-                              <tbody>
-                                <tr align="right">
-                                  <th class="sticky-cell" rowspan="2" style="text-align:center;vertical-align: middle;"><?php echo $row["row"] ?></th>
-                                  <th scope="row" style="text-align:left;vertical-align: middle;"><a href="detail_kapal.php?kapal=<?php echo $row["kapal"]?>&employee=<?php echo $p_employee;?>"><?php echo $row["kapal"] ?></a></th>
-                                  <td align="center"><?php echo $row["curr"] ?></td>
-                                  <td><?php echo number_format($row["plan"]) ?></td>
-                                  <td><?php echo number_format($row["actual"]) ?></td>
-                                  <td><?php echo number_format($row["commitment"]) ?></td>
-                                  <td><?php echo number_format($row["available"]) ?></td>
-                                  <td rowspan="2" style="text-align: center;vertical-align: middle;"><?php echo round($row["available"]/$row["plan"] * 100,2) ?>%</td>
-                                </tr>
-                                <tr align="right">
-                                  <th scope="row"><?php echo $row["cost_center"] ?></th>
-                                  <td align="center"><?php echo $row["curr_usd"] ?></td>
-                                  <td><?php echo number_format($row["plan_usd"]) ?></td>
-                                  <td><?php echo number_format($row["actual_usd"]) ?></td>
-                                  <td><?php echo number_format($row["commitment_usd"]) ?></td>
-                                  <td><?php echo number_format($row["available_usd"]) ?></td>
-                                </tr>
-                              
-                              <?php
-                              
-                              }
-                              
-                              ?>
+                                    $sql = "SELECT 
+                                    @i:=@i+1 as row,aa.* 
+                                    FROM opex_apex aa,
+                                    employee e,
+                                    (SELECT @i:=0) as foo
+                                    where
+                                    aa.kapal not like ''
+                                    and aa.kapal = e.kapal
+                                    and (e.employee = '".$p_employee."' or  ('".$p_employee."' = '' ) ) 
+                                    ";
+                                    $result = $conn->query($sql);
+                                    while($row = $result->fetch_assoc()) {
 
-                              </tbody>
-                        </table>
+                                    ?>
+
+                                    <tbody>
+                                      <tr align="right">
+                                        <th class="sticky-cell" rowspan="2" style="text-align:center;vertical-align: middle;"><?php echo $row["row"] ?></th>
+                                        <th scope="row" style="text-align:left;vertical-align: middle;"><a href="detail_kapal.php?kapal=<?php echo $row["kapal"]?>&employee=<?php echo $p_employee;?>"><?php echo $row["kapal"] ?></a></th>
+                                        <td align="center"><?php echo $row["curr"] ?></td>
+                                        <td><?php echo number_format($row["plan"]) ?></td>
+                                        <td><?php echo number_format($row["actual"]) ?></td>
+                                        <td><?php echo number_format($row["commitment"]) ?></td>
+                                        <td><?php echo number_format($row["available"]) ?></td>
+                                        <td rowspan="2" style="text-align: center;vertical-align: middle;"><?php echo round($row["available"]/$row["plan"] * 100,2) ?>%</td>
+                                      </tr>
+                                      <tr align="right">
+                                        <th scope="row"><?php echo $row["cost_center"] ?></th>
+                                        <td align="center"><?php echo $row["curr_usd"] ?></td>
+                                        <td><?php echo number_format($row["plan_usd"]) ?></td>
+                                        <td><?php echo number_format($row["actual_usd"]) ?></td>
+                                        <td><?php echo number_format($row["commitment_usd"]) ?></td>
+                                        <td><?php echo number_format($row["available_usd"]) ?></td>
+                                      </tr>
+                                    
+                                    <?php
+                                    
+                                    }
+                                    
+                                    ?>
+
+                                    </tbody>
+                              </table>
+                              </div>
+                            </div>
+                          </div>
+                          <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+
+                                                            <table class="table table-bordered ">
+                                  <thead>
+                                    <tr class="sticky-header">
+                                      <th rowspan="2" style="text-align: center;vertical-align: middle;" class="sticky-cell">Cost Element</th>
+                                      <th style="text-align: center;vertical-align: middle;">Currency</th>
+                                      <th style="text-align: center;vertical-align: middle;">Plan</th>
+                                      <th style="text-align: center;">Actual</th>
+                                      <th style="text-align: center;">Commitment</th>
+                                      <th style="text-align: center;">Available</th>
+                                    </tr>
+                                  </thead>
+                                  <?php
+
+                                    $sql = "SELECT
+                                    aa.cost_element,
+                                    aa.kurs,
+                                    sum(aa.actual) as actual,
+                                    sum(aa.commitment) as commitment,
+                                    sum(aa.alloted) as alloted,
+                                    sum(aa.plan) as plan, 
+                                    sum(aa.available) as available 
+                                    FROM detail_kapal aa
+                                    where
+                                    (aa.cost_element like '%6001011110%' or 
+                                    aa.cost_element like '%6001013120%' or
+                                    aa.cost_element like '%6001013130%' or
+                                    aa.cost_element like '%6001013210%' or
+                                    aa.cost_element like '%6001014170%' or
+                                    aa.cost_element like '%6001020100%' or
+                                    aa.cost_element like '%6001022190%' )
+                                    group by
+                                    aa.cost_element,
+                                    aa.kurs
+                                    ";
+                                    $result = $conn->query($sql);
+                                    while($row = $result->fetch_assoc()) {
+
+                                    ?>
+
+                                    <tbody>
+                                      <tr align="right">
+                                        <th class="sticky-cell" rowspan="2" style="text-align:center;vertical-align: middle;"><?php echo $row["cost_element"] ?></th>
+                                        <th scope="row" style="text-align: center;vertical-align: middle;">IDR</a></th>
+                                        <td><?php echo number_format($row["plan"]*$row["kurs"]) ?></td>
+                                        <td><?php echo number_format($row["actual"]*$row["kurs"]) ?></td>
+                                        <td><?php echo number_format($row["commitment"]*$row["kurs"]) ?></td>
+                                        <td><?php echo number_format($row["available"]*$row["kurs"]) ?></td>
+                                      </tr>
+                                      <tr align="right">
+                                        <th scope="row" style="text-align: center;vertical-align: middle;">USD</th>
+                                        <td><?php echo number_format($row["plan"]) ?></td>
+                                        <td><?php echo number_format($row["actual"]) ?></td>
+                                        <td><?php echo number_format($row["commitment"]) ?></td>
+                                        <td><?php echo number_format($row["available"]) ?></td>
+                                      </tr>
+                                    
+                                    <?php
+                                    
+                                    }
+                                    
+                                    ?>
+
+                                    </tbody>
+                              </table>
+
+                          </div>
                         </div>
                       </div>
-					</div>
-					
-					<div role="tabpanel" class="tab-pane fade" id="tab_content2b" aria-labelledby="profile-tab">
-					<div class="x_content" style="padding-top: 20px;">
-					<div class="col-lg-9 col-md-9 hidden-xs">
-                      </div>
-                        <table class="table table-bordered">
-                          <tbody>
-                            <tr>
-                              <th style="text-align: center;vertical-align: middle;">Cost Element</th>
-                              <th style="text-align: center;">Currency</th>
-                              <th style="text-align: center;">Plan</th>
-                              <th style="text-align: center;">Actual</th>
-                              <th style="text-align: center;">Commitment</th>
-                              <th style="text-align: center;">Available</th>
-                            </tr>
 
-                            <!-- <?php
-
-                              $sql = "SELECT oa.cost_center,aa.* 
-                              FROM detail_kapal aa,
-                              employee e,
-                              opex_apex oa
-                              where
-                              aa.kapal not like ''
-                              and aa.kapal = e.kapal
-                              and aa.kapal = oa.kapal
-                              and (e.employee = '".$p_employee."' or  ('".$p_employee."' = '' ) ) 
-                              and e.kapal = '".$kapal."'
-                              and 
-                              (aa.cost_element like '%6001011110%' or 
-                              aa.cost_element like '%6001013120%' or
-                              aa.cost_element like '%6001013130%' or
-                              aa.cost_element like '%6001013210%' or
-                              aa.cost_element like '%6001014170%' or
-                              aa.cost_element like '%6001020100%' or
-                              aa.cost_element like '%6001022190%' )
-                              order by cost_element
-                              ";
-                              $result = $conn->query($sql);
-                              while($row = $result->fetch_assoc()) {
-
-                              ?>
-                              <tr align="right">
-                                <th scope="row" rowspan="2" style="text-align: center;vertical-align: middle;"><?php echo $row["cost_element"] ?></th>
-                                <td style="text-align: center;vertical-align: middle;">IDR</td>
-                                <td><?php echo number_format($row["plan"]*$row["kurs"]) ?></td>
-                                <td><?php echo number_format($row["actual"]*$row["kurs"]) ?></td>
-                                <td><?php echo number_format($row["commitment"]*$row["kurs"]) ?></td>
-                                <td><?php echo number_format($row["available"]*$row["kurs"]) ?></td>
-                              </tr>
-
-                              <tr align="right">
-                                <td style="text-align: center;vertical-align: middle;">USD</td>
-                                <td><?php echo number_format($row["plan"]) ?></td>
-                                <td><?php echo number_format($row["actual"]) ?></td>
-                                <td><?php echo number_format($row["commitment"]) ?></td>
-                                <td><?php echo number_format($row["available"]) ?></td>
-                              </tr>
-
-                            <?php
-                            
-                            }
-                            
-                            ?> -->
-
-                          </tbody>
-                        </table>
-                      </div>
-					</div>
-					
                     </div>
                   </div>
                 </div>
-
-              </div>
             </form>
           </div>
         </div>
@@ -350,6 +341,7 @@ else{
           <div class="clearfix"></div>
         </footer>
         <!-- /footer content -->
+      </div>
     </div>
 
     <!-- jQuery -->

@@ -157,7 +157,7 @@ include("controller/doconnect.php");
                       <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#tab_content1" role="tab" id="home-tab" data-toggle="tab" aria-expanded="true"> <i class="fa fa-ship"></i> PR VS PO Kapal</a>
                         </li>
-						<li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false"> <i class="fa fa-calendar"></i> PR VS PO Bulan</a>
+						            <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false"> <i class="fa fa-calendar"></i> PR VS PO Bulan</a>
                         </li>
                         <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false"> <i class="fa fa-credit-card-alt"></i> PR Jenis Pengadaan</a>
                         </li>
@@ -170,7 +170,7 @@ include("controller/doconnect.php");
                             <?php include("query/summary_kapal.php") ?>
 
                         </div>
-						<div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+						            <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
 
                             <?php include("query/summary_pr_perbulan_all.php") ?>
 
