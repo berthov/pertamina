@@ -375,7 +375,7 @@ if (isset($_POST["abo_abi"])) {
 	$sql ="DELETE FROM detail_kapal";
 	$result = mysqli_query($conn, $sql);
 
-	for ($a=6; $a <=28 ; $a++) { 
+	for ($a=6; $a <=29 ; $a++) { 
 	
 		if ($excel->setActiveSheetIndex($a)->getTitle() === 'P_Tabuhan') {
 			$kapal = 'Paluh Tabuhan';
