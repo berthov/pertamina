@@ -2554,6 +2554,12 @@ if (typeof NProgress != 'undefined') {
 
 				$('#datatable').dataTable();
 
+				$('#datatable1').dataTable({
+				  keys: true,
+				  paging: false,
+				  "scrollY": 540
+				});
+
 				$('#datatable-keytable').DataTable({
 				  keys: true,
 				  "scrollY": 540,

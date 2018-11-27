@@ -5,6 +5,13 @@ html , body{
  
 }
  
+
+.tbody{
+    height:200px;
+    overflow-y:auto;
+    width: 100%;
+    }
+
 .full-width {
 	
  width:100%;

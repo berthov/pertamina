@@ -1,6 +1,6 @@
                         <div class="card-box table-responsive">
 							
-                          <table class="table table-striped">
+                          <table id="datatable1" class="table table-striped">
                             <thead>
                               <tr>
                                 <th>Kapal</th>
