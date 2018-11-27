@@ -1,33 +1,46 @@
 <?php
 include("controller/doconnect.php");
+session_start();
+
+if($_SERVER["REQUEST_METHOD"]=="POST"){
+
+  if(isset($_REQUEST['bulan'])){
+    $date = $_REQUEST['bulan'];
+  }
+  else{
+   $date = ''; 
+  }
+
+  if(isset($_REQUEST['item'])){
+    $item = $_REQUEST['item'];
+  }
+  else{
+   $item = ''; 
+  }
+
+  if(isset($_REQUEST['kapal'])){
+    $kapal = $_REQUEST['kapal'];
+    // $_SESSION['kapal'] = $_REQUEST['kapal'];
+  }
+  else{
+   $kapal = ''; 
+  }
+
+  if(isset($_REQUEST['vendor'])){
+    $vendor = $_REQUEST['vendor'];
+  }
+  else{
+   $vendor = ''; 
+  }
+
+  if(isset($_REQUEST['category'])){
+    $category = $_REQUEST['category'];
+  }
+  else{
+   $category = ''; 
+  }
 
 
-if(isset($_REQUEST['bulan'])){
-  $date = $_REQUEST['bulan'];
-}
-else{
- $date = ''; 
-}
-
-if(isset($_REQUEST['item'])){
-  $item = $_REQUEST['item'];
-}
-else{
- $item = ''; 
-}
-
-if(isset($_REQUEST['kapal'])){
-  $kapal = $_REQUEST['kapal'];
-}
-else{
- $kapal = ''; 
-}
-
-if(isset($_REQUEST['vendor'])){
-  $vendor = $_REQUEST['vendor'];
-}
-else{
- $vendor = ''; 
 }
 
 ?>
@@ -103,7 +116,7 @@ else{
           <div class="">
             <div class="clearfix"></div>
 
-            <!-- <div class="row">
+             <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
@@ -137,7 +150,7 @@ else{
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nama Kapal<span class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="first-name" class="form-control col-md-7 col-xs-12" name="kapal" placeholder=<?php echo $kapal; ?>>
+                          <input type="text" id="first-name" class="form-control col-md-7 col-xs-12" value="<?php echo $kapal; ?>" name="kapal" placeholder="<?php echo $kapal; ?>">
                         </div>
                       </div>
 
@@ -145,7 +158,7 @@ else{
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Uraian<span class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="first-name" class="form-control col-md-7 col-xs-12" name="item" placeholder=<?php echo $item; ?>>
+                          <input type="text" id="first-name" class="form-control col-md-7 col-xs-12" value="<?php echo $item; ?>" name="item" placeholder="<?php echo $item; ?>">
                         </div>
                       </div>
 
@@ -153,10 +166,23 @@ else{
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nama Vendor/User<span class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="text" id="first-name" class="form-control col-md-7 col-xs-12" name="vendor">
+                          <input type="text" id="first-name" class="form-control col-md-7 col-xs-12" value="<?php echo $vendor; ?>" name="vendor">
                         </div>
                       </div>
-                      
+
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Category<span class="required"></span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <select class="form-control" name="category">
+                            <option value="">Select All</option>
+                            <option value="1">PR Tanpa PO</option>
+                            <option value="2">PR Sudah PO Tanpa GR/SA</option>
+                            <option value="3">PR Sudah PO Sudah GR/SA</option>                            
+                          </select>
+                        </div>
+                      </div>
+
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Bulan PR<span class="required"></span>
                         </label>
@@ -182,7 +208,7 @@ else{
                   </div>
                 </div>
               </div>
-            </div> -->
+            </div> 
 
             <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
@@ -258,7 +284,10 @@ else{
                                 and (date_format(pr_date,'%m/%Y') like '".$date."' or ('".$date."' = ''))
                                 and (kapal like '%$kapal%' or ('".$kapal."' = '') ) 
                                 and (deskripsi like '%$item%' or ('".$item."' = '') ) 
-                                and (vendor like '%$vendor%' or ('".$vendor."' = '') ) 
+                                and (vendor like '%$vendor%' or ('".$vendor."' = '') )
+                                and ((pr.po_number = '' and '".$category."' = '1') or
+                                     (pr.po_number not like '' and pr.sa_number = '' and '".$category."' = '2') or
+                                     (pr.po_number not like '' and pr.sa_number not like '' and '".$category."' = '3') or ('".$category."' = ''))
                                 ";
 
                               $result = $conn->query($sql);

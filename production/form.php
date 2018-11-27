@@ -93,7 +93,7 @@ include ("controller/doconnect.php");
                     <div class="clearfix"></div>
                   </div>
                   
-				  <div class="x_content">
+				          <div class="x_content">
                     <br />
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="tables_pr.php" method="post">
 
