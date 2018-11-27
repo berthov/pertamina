@@ -1,15 +1,15 @@
-                        <div class="card-box table-responsive">
-
+                       <div class="card-box table-responsive">
+                        <div class="sticky-table sticky-ltr-cells">
                           <table class="table table-striped">
                             <thead>
-                              <tr>
-                                <th>Bulan</th>
+                              <tr class="sticky-header">
+                                <th class="sticky-cell">Bulan</th>
                                 <!-- <th>Jumlah PR</th> -->
-                                <th>Total Nilai PR</th>
+                                <th class="sticky-cell">Total Nilai PR</th>
                                 <!-- <th>Jumlah PO</th> -->
-                                <th>Total Nilai PO</th>
+                                <th class="sticky-cell">Total Nilai PO</th>
                                 <!-- <th>Pengurangan</th> -->
-                                <th>Realisasi</th>
+                                <th class="sticky-cell">Realisasi</th>
                               </tr>
                             </thead>
 
@@ -58,3 +58,4 @@
                             </tbody>
                           </table>
                         </div>
+                      </div>

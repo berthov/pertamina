@@ -29,7 +29,9 @@ include("controller/doconnect.php");
     <link href="../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="../build/css/custom.min.css" rel="stylesheet">
+    <link href="../build/css/custom.css" rel="stylesheet">
+    <link href="../build/css/jquery.stickytable.css" rel="stylesheet">
+
   </head>
 
   <body class="nav-md">
@@ -262,6 +264,7 @@ include("controller/doconnect.php");
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.js"></script>
     <script src="../build/js/chart_value.js"></script>
+    <script src="../build/js/jquery.stickytable.js" type="text/javascript"></script>
 
     <script type="text/javascript">
               

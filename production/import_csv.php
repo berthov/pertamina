@@ -377,8 +377,8 @@ if (isset($_POST["abo_abi"])) {
 
 	for ($a=6; $a <=29 ; $a++) { 
 	
-		if ($excel->setActiveSheetIndex($a)->getTitle() === 'P_Tabuhan') {
-			$kapal = 'Paluh Tabuhan';
+		if ($excel->setActiveSheetIndex($a)->getTitle() === 'P_Tabuan') {
+			$kapal = 'Paluh Tabuan';
 		}
 		elseif ($excel->setActiveSheetIndex($a)->getTitle() === 'MangunJaya') {
 			$kapal = 'Mangun Jaya';
