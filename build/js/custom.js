@@ -2556,7 +2556,7 @@ if (typeof NProgress != 'undefined') {
 
 				$('#datatable-keytable').DataTable({
 				  keys: true,
-				  "scrollY": 600,
+				  "scrollY": 540,
         		  "scrollX": true
 				});
 

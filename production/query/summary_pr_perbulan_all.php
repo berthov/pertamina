@@ -8,8 +8,8 @@
                                 <th>Total Nilai PR</th>
                                 <!-- <th>Jumlah PO</th> -->
                                 <th>Total Nilai PO</th>
-                                <!-- <th>Pengurangan</th>
-                                <th>Efficiency</th> -->
+                                <!-- <th>Pengurangan</th> -->
+                                <th>Realisasi</th>
                               </tr>
                             </thead>
 
@@ -48,8 +48,8 @@
                                 <td><?php echo number_format($row["nilai_pr"]); echo " IDR";?></td>
                                 <!-- <td><?php echo $row["count_po"];?></td> -->
                                 <td><?php echo number_format($row["nilai_po"]); echo " IDR" ?></td>
-                                <!-- <td style="color: red"><?php echo number_format($row["nilai_pr"] - $row["nilai_po"]); echo " IDR"?></td>
-                                <td style="color: red"><?php echo round(($row["nilai_pr"] - $row["nilai_po"])/$row["nilai_pr"] * 100,2); echo " %"?></td> -->
+                                <!-- <td style="color: red"><?php echo number_format($row["nilai_pr"] - $row["nilai_po"]); echo " IDR"?></td> -->
+                                <td style="color: green"><?php echo round($row["nilai_po"]/$row["nilai_pr"] * 100,2); echo " %"?></td>
                               </tr>
 
                           <?php

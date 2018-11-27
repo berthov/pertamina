@@ -263,6 +263,7 @@ else{
                                       <th style="text-align: center;">Actual</th>
                                       <th style="text-align: center;">Commitment</th>
                                       <th style="text-align: center;">Available</th>
+									  <th style="text-align: center;vertical-align: middle;">Sisa</th>
                                     </tr>
                                   </thead>
                                   <?php
@@ -301,6 +302,7 @@ else{
                                         <td><?php echo number_format($row["actual"]*$row["kurs"]) ?></td>
                                         <td><?php echo number_format($row["commitment"]*$row["kurs"]) ?></td>
                                         <td><?php echo number_format($row["available"]*$row["kurs"]) ?></td>
+										<td rowspan="2" style="text-align: center;vertical-align: middle;"><?php echo round($row["available"]/$row["plan"] * 100,2) ?>%</td>
                                       </tr>
                                       <tr align="right">
                                         <th scope="row" style="text-align: center;vertical-align: middle;">USD</th>

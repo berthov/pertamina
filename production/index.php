@@ -86,10 +86,10 @@ include("controller/doconnect.php");
               <div class="col-xl-3 col-md-3 col-sm-3 col-xs-6 tile_stats_count">
                 <span class="count_top"><i class="fa fa-line-chart"></i> Plan 
                   </span>
-                <div class="count" style="font-size: 25px;"><a href="apex.php"><?php echo number_format($row["plan"]); echo " IDR";?></a></div>
+                <div class="count" style="font-size: 25px;"><?php echo number_format($row["plan"]); echo " IDR";?></div>
                 <span class="count_bottom" style="font-size: 20px;color:#F7F7F7"></span>
 				
-				<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="apex.php" method="post">
+				<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="new_1.php" method="post">
 				<div class="form-group">
                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                           <button type="submit" class="btn btn-success">Lihat Anggaran</button>
@@ -101,21 +101,21 @@ include("controller/doconnect.php");
               <div class="col-xl-3 col-md-3 col-sm-3 col-xs-6 tile_stats_count">
                 <span class="count_top"><i class="fa fa-line-chart"></i> Actual 
                   </span>
-                <div class="count" style="font-size: 25px;"><a href="apex.php"><?php echo number_format($row["actual"]); echo " IDR";?></a></div>
+                <div class="count" style="font-size: 25px;"><?php echo number_format($row["actual"]); echo " IDR";?></div>
                 <span class="count_bottom" style="font-size: 20px;"><i class="green"><?php echo round($row["actual"]/$row["plan"]*100,2);?> </i> %</span>
               </div>
 
               <div class="col-xl-3 col-md-3 col-sm-3 col-xs-6 tile_stats_count">
                 <span class="count_top"><i class="fa fa-line-chart"></i> Commitment 
                   </span>
-                <div class="count" style="font-size: 25px;"><a href="apex.php"><?php echo number_format($row["commitment"]); echo " IDR";?></a></div>
+                <div class="count" style="font-size: 25px;"><?php echo number_format($row["commitment"]); echo " IDR";?></div>
                 <span class="count_bottom" style="font-size: 20px;"><i class="green"><?php echo round($row["commitment"]/$row["plan"]*100,2);?> </i> % </span>
               </div>
 
               <div class="col-xl-3 col-md-3 col-sm-3 col-xs-6 tile_stats_count">
                 <span class="count_top"><i class="fa fa-line-chart"></i> Available 
                   </span>
-                <div class="count" style="font-size: 25px;"><a href="apex.php"><?php echo number_format($row["available"]); echo " IDR";?></a></div>
+                <div class="count" style="font-size: 25px;"><?php echo number_format($row["available"]); echo " IDR";?></div>
                 <span class="count_bottom" style="font-size: 20px;"><i class="green"><?php echo round($row["available"]/$row["plan"]*100,2);?> </i> %</span>
               </div>
 
