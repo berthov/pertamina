@@ -188,7 +188,7 @@ session_start();
                         <div class="col-md-3 col-sm-3 col-xs-12">
                           <div class="form-group">
                               <div class='input-group date' id='myDatepicker2'>
-                                  <input type='text' class="form-control" name="bulan" autocomplete="off">
+                                  <input type='text' class="form-control" name="bulan" autocomplete="off" value="<?php echo $date ?>">
                                   <span class="input-group-addon">
                                      <span class="glyphicon glyphicon-calendar"></span>
                                   </span>
