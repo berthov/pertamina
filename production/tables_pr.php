@@ -124,7 +124,7 @@ session_start();
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
 					  
-                      <li class="dropdown">
+                      <!-- <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                         <ul class="dropdown-menu" role="menu">
                           <li><a href="#">Settings 1</a>
@@ -135,7 +135,7 @@ session_start();
                       </li>
 					  
                       <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
+                      </li> -->
                     </ul>
 					
                     <div class="clearfix"></div>
@@ -153,7 +153,7 @@ session_start();
                         </div>
                       </div>
 
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Uraian<span class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -167,7 +167,7 @@ session_start();
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <input type="text" id="first-name" class="form-control col-md-7 col-xs-12" name="vendor">
                         </div>
-                      </div>
+                      </div> -->
 
                       <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Category<span class="required"></span>
@@ -241,10 +241,10 @@ session_start();
                             <thead>
                               <tr>
                                 <th>NAMA KAPAL</th>
-                                <th>TECHINCAL SUPERINTENDENT</th>
-                                <th>URAIAN</th>
+                                <th>NAMA VENDOR/USER</th>
+								<th>URAIAN</th>
                                 <th>STATUS PART</th>
-                                <TH>FRL/MD/MM/MIV/2018</TH>
+								<TH>FRL/MD/MM/MIV/2018</TH>
                                 <th>NO PR</th>
                                 <th>TANGGAL PR</th>
                                 <th>NILAI PR</th>
@@ -253,7 +253,7 @@ session_start();
                                 <th>NILAI PO</th>
                                 <th>NO SA/GR</th>
                                 <th>TANGGAL SA/GR</th>
-                                <th>NAMA VENDOR/USER</th>
+                                <th>TECHINCAL SUPERINTENDENT</th>
                               </tr>
                             </thead>
 
@@ -263,7 +263,7 @@ session_start();
 
                               $sql = "SELECT 
                                 pr.kapal,
-                                pr.technical_superintendent,
+                                pr.vendor,
                                 pr.deskripsi,
                                 pr.status_part,
                                 pr.FRL_MD_MM_2018,
@@ -275,7 +275,7 @@ session_start();
                                 pr.nilai_po,
                                 pr.sa_number,
                                 pr.sa_date,
-                                pr.vendor 
+                                pr.technical_superintendent
                                 FROM 
                                 purchase_request pr
                                 WHERE
@@ -285,7 +285,7 @@ session_start();
                                 and (deskripsi like '%$item%' or ('".$item."' = '') ) 
                                 and (vendor like '%$vendor%' or ('".$vendor."' = '') )
                                 and ((pr.po_number = '' and '".$category."' = '1') or
-                                     (pr.po_number not like '' and pr.sa_number = '' and '".$category."' = '2') or
+                                     (pr.po_number not like '' and pr.sa_date = '' and '".$category."' = '2') or
                                      (pr.po_number not like '' and pr.sa_number not like '' and '".$category."' = '3') or ('".$category."' = ''))
                                 ";
 
@@ -295,7 +295,7 @@ session_start();
 
                               <tr>
                                 <td><?php echo $row["kapal"]?></td>
-                                <td><?php echo $row["technical_superintendent"]?></td>
+                                <td><?php echo $row["vendor"]?></td>
                                 <td><?php echo $row["deskripsi"]?></td>
                                 <td><?php echo $row["status_part"]?></td>
                                 <td><?php echo $row["FRL_MD_MM_2018"]?></td>
@@ -317,7 +317,7 @@ session_start();
                                 <td><?php echo number_format($row["nilai_po"])?></td>
                                 <td><?php echo $row["sa_number"]?></td>
                                 <td><?php echo $row["sa_date"]?></td>
-                                <td><?php echo $row["vendor"]?></td>
+                                <td><?php echo $row["technical_superintendent"]?></td>
                               </tr>
 
                           <?php
