@@ -32,14 +32,21 @@ if(isset($_POST["pr"])){
 				$po_number 					=$excel->getActiveSheet()->getCell('O'.$i)->getValue();
 				
 				// VALIDASI PO DATE
-				if (date('Y-m',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('M'.$i)->getValue()))) === date('Y-m',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue()))) ) {
-				$po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue())));	
-				}
-				elseif (date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue()))) === '1970-01-01' ) {
+				// if (date('Y-m',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('M'.$i)->getValue()))) === date('Y-m',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue()))) ) {
+				// $po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue())));	
+				// }
+				// elseif (date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue()))) === '1970-01-01' ) {
+				// $po_date 					='NULL';
+				// }
+				// else{
+				// $po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('M'.$i)->getValue())));
+				// }
+				// $po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('M'.$i)->getValue())));
+				if (date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue()))) === '1970-01-01' ) {
 				$po_date 					='NULL';
 				}
 				else{
-				$po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('M'.$i)->getValue())));
+				$po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue())));
 				}
 				// END OF VALIDASI PO DATE
 				
@@ -85,14 +92,20 @@ if(isset($_POST["pr"])){
 			$po_number 					=$excel->getActiveSheet()->getCell('O'.$i)->getValue();
 			
 			// VALIDASI PO DATE
-			if (date('Y-m',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('M'.$i)->getValue()))) === date('Y-m',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue()))) ) {
-			$po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue())));	
-			}
-			elseif (date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue()))) === '1970-01-01' ) {
+			// if (date('Y-m',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('M'.$i)->getValue()))) === date('Y-m',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue()))) ) {
+			// $po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue())));	
+			// }
+			// elseif (date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue()))) === '1970-01-01' ) {
+			// $po_date 					='NULL';
+			// }
+			// else{
+			// $po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('M'.$i)->getValue())));
+			// }
+			if (date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue()))) === '1970-01-01' ) {
 			$po_date 					='NULL';
 			}
 			else{
-			$po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('M'.$i)->getValue())));
+			$po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue())));
 			}
 			// END OF VALIDASI PO DATE
 			
@@ -136,14 +149,20 @@ if(isset($_POST["pr"])){
 			$po_number 					=$excel->getActiveSheet()->getCell('O'.$i)->getValue();
 			
 			// VALIDASI PO DATE
-			if (date('Y-m',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('M'.$i)->getValue()))) === date('Y-m',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue()))) ) {
-			$po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue())));	
-			}
-			elseif (date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue()))) === '1970-01-01' ) {
+			// if (date('Y-m',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('M'.$i)->getValue()))) === date('Y-m',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue()))) ) {
+			// $po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue())));	
+			// }
+			// elseif (date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue()))) === '1970-01-01' ) {
+			// $po_date 					='NULL';
+			// }
+			// else{
+			// $po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('M'.$i)->getValue())));
+			// }
+			if (date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue()))) === '1970-01-01' ) {
 			$po_date 					='NULL';
 			}
 			else{
-			$po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('M'.$i)->getValue())));
+			$po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue())));
 			}
 			// END OF VALIDASI PO DATE
 
@@ -187,14 +206,20 @@ if(isset($_POST["pr"])){
 			$po_number 					=$excel->getActiveSheet()->getCell('O'.$i)->getValue();
 				
 			// VALIDASI PO DATE
-			if (date('Y-m',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('M'.$i)->getValue()))) === date('Y-m',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue()))) ) {
-			$po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue())));	
-			}
-			elseif (date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue()))) === '1970-01-01' ) {
+			// if (date('Y-m',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('M'.$i)->getValue()))) === date('Y-m',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue()))) ) {
+			// $po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue())));	
+			// }
+			// elseif (date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue()))) === '1970-01-01' ) {
+			// $po_date 					='NULL';
+			// }
+			// else{
+			// $po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('M'.$i)->getValue())));
+			// }
+			if (date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue()))) === '1970-01-01' ) {
 			$po_date 					='NULL';
 			}
 			else{
-			$po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('M'.$i)->getValue())));
+			$po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue())));
 			}
 			// END OF VALIDASI PO DATE
 
@@ -240,14 +265,20 @@ if(isset($_POST["pr"])){
 			$po_number 					=$excel->getActiveSheet()->getCell('O'.$i)->getValue();
 
 			// VALIDASI PO DATE
-			if (date('Y-m',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('M'.$i)->getValue()))) === date('Y-m',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue()))) ) {
-			$po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue())));	
-			}
-			elseif (date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue()))) === '1970-01-01' ) {
+			// if (date('Y-m',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('M'.$i)->getValue()))) === date('Y-m',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue()))) ) {
+			// $po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue())));	
+			// }
+			// elseif (date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue()))) === '1970-01-01' ) {
+			// $po_date 					='NULL';
+			// }
+			// else{
+			// $po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('M'.$i)->getValue())));
+			// }
+			if (date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue()))) === '1970-01-01' ) {
 			$po_date 					='NULL';
 			}
 			else{
-			$po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('M'.$i)->getValue())));
+			$po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue())));
 			}
 			// END OF VALIDASI PO DATE
 
@@ -291,14 +322,20 @@ if(isset($_POST["pr"])){
 			$po_number 					=$excel->getActiveSheet()->getCell('O'.$i)->getValue();
 
 			// VALIDASI PO DATE
-			if (date('Y-m',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('M'.$i)->getValue()))) === date('Y-m',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue()))) ) {
-			$po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue())));	
-			}
-			elseif (date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue()))) === '1970-01-01' ) {
+			// if (date('Y-m',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('M'.$i)->getValue()))) === date('Y-m',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue()))) ) {
+			// $po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue())));	
+			// }
+			// elseif (date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue()))) === '1970-01-01' ) {
+			// $po_date 					='NULL';
+			// }
+			// else{
+			// $po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('M'.$i)->getValue())));
+			// }
+			if (date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue()))) === '1970-01-01' ) {
 			$po_date 					='NULL';
 			}
 			else{
-			$po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('M'.$i)->getValue())));
+			$po_date 					=date('Y-m-d',strtotime(str_replace(".","-",$excel->getActiveSheet()->getCell('P'.$i)->getValue())));
 			}
 			// END OF VALIDASI PO DATE
 				

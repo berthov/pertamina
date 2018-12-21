@@ -2,51 +2,46 @@
 include("controller/doconnect.php");
 ?>
 <table>
-<?php
 
-                                    $sql = "SELECT
-                                    aa.cost_element,
-                                    aa.kurs,
-                                    aa.kapal,
-                                    sum(aa.actual) as actual,
-                                    sum(aa.commitment) as commitment,
-                                    sum(aa.alloted) as alloted,
-                                    sum(aa.plan) as plan, 
-                                    sum(aa.available) as available 
-                                    FROM detail_kapal aa
-                                    where
-                                    (aa.cost_element like '%6001011110%' or 
-                                    aa.cost_element like '%6001013120%' or
-                                    aa.cost_element like '%6001013130%' or
-                                    aa.cost_element like '%6001013210%' or
-                                    aa.cost_element like '%6001014170%' or
-                                    aa.cost_element like '%6001020100%' or
-                                    aa.cost_element like '%6001022190%' )
-                                    group by
-                                    aa.cost_element,
-                                    aa.kurs,
-                                    aa.kapal
-                                    order by aa.cost_element,aa.kapal
-                                    ";
-                                    $result = $conn->query($sql);
-                                    while($row = $result->fetch_assoc()) {
+                          <?php
 
-                                    ?>
+                            $sql = "
+                            SELECT date_format(pr.pr_date,'%M-%Y') as bulan,
+                            sum(nilai) as nilai_pr,
+                            -- sum(nilai_po) as nilai_po
+                            sum(case
+                            when date_format(pr.pr_date,'%M-%Y') <> date_format(pr.po_date,'%M-%Y')
+                            then
+                            pr.nilai
+                            else
+                            pr.nilai_po    
+                            end) as nilai_po
+                            FROM 
+                            purchase_request pr
+                            where
+                            pr.pr_date not like '1970-01-01'
+                            and po_number = '3900131175'
+                            group by date_format(pr.pr_date,'%M-%Y')
+                            order by date_format(pr.pr_date,'%Y%m') asc
+                            ";
 
-                                    <tbody>
-                                      <tr align="right">
-                                        <th class="sticky-cell" style="text-align:center;vertical-align: middle;"><?php echo $row["cost_element"] ?></th>
-                                        <th class="sticky-cell" style="text-align:center;vertical-align: middle;"><?php echo $row["kapal"] ?></th>
-                                        <td><?php echo number_format($row["plan"]) ?></td>
-                                        <td><?php echo number_format($row["actual"]) ?></td>
-                                        <td><?php echo number_format($row["commitment"]) ?></td>
-                                        <td><?php echo number_format($row["available"]) ?></td>
-                                      </tr>
-                                    
-                                    <?php
-                                    
-                                    }
-                                    
-                                    ?>
-                                  </tbody>
+                              $result = $conn->query($sql);
+                              while($row = $result->fetch_assoc()) {
+                          ?>
+
+                              <tr>
+                                <!-- <td><?php echo $row["bulan"];?></td> -->
+                                <td><b><a href="tables_pr.php?bulan=<?php echo $row["month"];?>"><?php echo $row["bulan"];?></a></b></td>
+                                <!-- <td><?php echo $row["total"];?></td> -->
+                                <td><?php echo number_format($row["nilai_pr"]); echo " IDR";?></td>
+                                <!-- <td><?php echo $row["count_po"];?></td> -->
+                                <td><?php echo number_format($row["nilai_po"]); echo " IDR" ?></td>
+                                <!-- <td><?php echo $row["nilai_po"];?></td> -->
+                                <!-- <td style="color: red"><?php echo number_format($row["nilai_pr"] - $row["nilai_po"]); echo " IDR"?></td> -->
+                                <td style="color: green"><?php echo round($row["nilai_po"]/$row["nilai_pr"] * 100,2); echo " %"?></td>
+                              </tr>
+
+                          <?php
+                          }
+                          ?>
                                   </table>
