@@ -373,7 +373,7 @@ if (isset($_POST["abo_abi"])) {
 
 	if ($excel->setActiveSheetIndex(5)) {
 
-		do {
+		// do {
 	
 
 			$i = 5;
@@ -404,7 +404,7 @@ if (isset($_POST["abo_abi"])) {
 
 				}
 
-		} while ( $i <= 49);
+		// } while ( $i <= 49);
 	}
 
 	//DETAIL KAPAL
