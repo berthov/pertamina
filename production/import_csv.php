@@ -366,7 +366,7 @@ if(isset($_POST["pr"])){
 if (isset($_POST["abo_abi"])) {
 	
 	$excel = PHPExcel_IOFactory::load($_FILES['file']['tmp_name']);
-
+	$num =  $excel->getSheetCount();
 	// DELETE TABLE
 	$sql ="DELETE FROM opex_apex";
 	$result = mysqli_query($conn, $sql);
@@ -412,7 +412,9 @@ if (isset($_POST["abo_abi"])) {
 	$sql ="DELETE FROM detail_kapal";
 	$result = mysqli_query($conn, $sql);
 
-	for ($a=6; $a <=29 ; $a++) { 
+
+
+	for ($a=6; $a <=$num - 1  ; $a++) { 
 	
 		if ($excel->setActiveSheetIndex($a)->getTitle() === 'P_Tabuan') {
 			$kapal = 'Paluh Tabuan';
